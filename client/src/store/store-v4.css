@@ -2737,6 +2737,29 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
   }
 }
 
+/* Separación definitiva: consentimiento + WhatsApp */
+.ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 16px 16px 0 !important;
+}
+
+.ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  margin: 20px 16px 0 !important;
+  transform: none !important;
+}
+
+.ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-caption {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  margin: 10px 16px 0 !important;
+}
+
 /* Celulares estrechos */
 @media (max-width: 400px) {
   .ch-store-v4 .ch-inquiry-drawer {
