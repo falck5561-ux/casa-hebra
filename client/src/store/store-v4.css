@@ -956,9 +956,45 @@ html[data-theme="dark"] .ch-store-v4 .ch-custom-section {
 }
 
 .ch-store-v4 .ch-privacy-consent {
-  border-color: var(--ch-line);
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 12px 14px;
+  overflow: visible;
+  border: 1px solid var(--ch-line);
   border-radius: 13px;
   background: var(--ch-surface-raised);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.ch-store-v4 .ch-privacy-consent input {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  flex: 0 0 auto;
+}
+
+.ch-store-v4 .ch-privacy-consent > span {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  line-height: 1.45;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.ch-store-v4 .ch-privacy-consent:has(input:checked) {
+  color: var(--ch-ink);
+  border-color: var(--ch-positive);
+  background: var(--ch-positive-surface);
 }
 
 .ch-store-v4 .ch-privacy-consent:has(input:checked) {
