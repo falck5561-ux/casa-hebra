@@ -1,24 +1,27 @@
 # Casa Hebra en Vercel Services
 
-Este repositorio usa un solo proyecto de Vercel con dos services:
+El repositorio despliega dos servicios dentro de un solo proyecto Vercel:
 
-- `client`: Vite/React, publico en `/*`.
-- `server`: Express, publico solamente mediante `/api/*`.
-- No hay bindings internos: el navegador llama a `/api/...` en el mismo dominio.
+- `client`: Vite/React, público en `/` y `/admin`.
+- `server`: Express, público únicamente mediante `/api/*`.
 
-## Variables en Vercel
+El build del cliente crea dos entradas HTML físicas:
 
-Agrega en Project Settings > Environment Variables:
+- `dist/index.html`
+- `dist/admin/index.html`
+
+Así `/admin` no depende de un fallback SPA de Vercel. React sigue decidiendo qué interfaz mostrar según `window.location.pathname`.
+
+## Variables de producción
+
+Configurar en Vercel, no en GitHub:
 
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `SUPABASE_STORAGE_BUCKET=casa-hebra-products`
 - `SUPABASE_DATABASE_ENABLED=true`
 - `SUPABASE_DATABASE_TABLE=casa_hebra_store`
-- `INQUIRY_RETENTION_DAYS=180`
-- `MAX_INQUIRIES=1000`
-- `TRUST_PROXY=true`
+- `NODE_ENV=production`
+- `PUBLIC_ORIGIN=https://casa-hebra.vercel.app`
 
-`PUBLIC_ORIGIN` es opcional en Vercel: el backend usa automaticamente la URL que Vercel inyecta. Cuando conectes un dominio propio, se recomienda fijarlo explicitamente a `https://tu-dominio`.
-
-No subas `server/.env` a GitHub.
+`SUPABASE_SERVICE_ROLE_KEY` debe permanecer secreta.

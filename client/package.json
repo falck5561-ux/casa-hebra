@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "vite build && node scripts/create-admin-entry.js",
     "preview": "vite preview --host 0.0.0.0",
-    "check": "vite build"
+    "check": "npm run build"
   },
   "dependencies": {
     "lucide-react": "0.544.0",
