@@ -2469,7 +2469,10 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
    ========================================================================== */
 
 @media (max-width: 760px) {
-  /* Overlay del carrito */
+  /* -----------------------------------------------------------------------
+     Overlay
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-overlay:has(.ch-inquiry-drawer) {
     display: flex !important;
     align-items: stretch !important;
@@ -2478,7 +2481,10 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     overflow: hidden !important;
   }
 
-  /* Panel principal */
+  /* -----------------------------------------------------------------------
+     Panel principal
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer {
     position: relative !important;
 
@@ -2500,19 +2506,27 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     border-left: 1px solid var(--ch-line) !important;
     border-radius: 22px 0 0 22px !important;
 
+    color: var(--ch-ink) !important;
     background: var(--ch-surface) !important;
 
     box-shadow: -18px 0 55px rgba(13, 10, 12, 0.2) !important;
   }
 
-  /* Cabecera */
+  /* -----------------------------------------------------------------------
+     Cabecera
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header {
     position: relative !important;
     z-index: 5 !important;
 
+    display: flex !important;
     flex: 0 0 auto !important;
 
     min-width: 0 !important;
+
+    align-items: flex-start !important;
+    justify-content: space-between !important;
 
     padding:
       max(18px, env(safe-area-inset-top))
@@ -2529,6 +2543,10 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     padding-right: 48px !important;
   }
 
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header .ch-eyebrow {
+    margin: 0 !important;
+  }
+
   .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header h2 {
     margin: 4px 0 0 !important;
 
@@ -2536,26 +2554,35 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     line-height: 1.08 !important;
 
     overflow-wrap: normal !important;
+    text-wrap: balance;
   }
 
-  /* Botón cerrar */
+  /* Cerrar */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-modal-close {
     position: absolute !important;
+    z-index: 10 !important;
 
     top: max(16px, env(safe-area-inset-top)) !important;
     right: 16px !important;
 
+    display: inline-flex !important;
     width: 40px !important;
     height: 40px !important;
 
-    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
 
     border-radius: 999px !important;
   }
 
-  /* Formulario completo */
+  /* -----------------------------------------------------------------------
+     Formulario / zona con scroll
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-inquiry-form {
     display: flex !important;
 
@@ -2565,37 +2592,54 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     flex: 1 1 auto !important;
     flex-direction: column !important;
 
+    margin: 0 !important;
     padding: 0 !important;
 
     overflow-x: hidden !important;
     overflow-y: auto !important;
 
     overscroll-behavior: contain;
-
     -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
   }
 
-  /* Productos */
+  /* -----------------------------------------------------------------------
+     Productos
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-bag-items {
     display: grid !important;
 
+    width: 100% !important;
     min-width: 0 !important;
 
     gap: 12px !important;
 
+    margin: 0 !important;
     padding: 16px 16px 6px !important;
+
+    box-sizing: border-box !important;
   }
 
   .ch-store-v4 .ch-inquiry-drawer .ch-bag-item {
     min-width: 0 !important;
 
+    margin: 0 !important;
     padding: 12px !important;
 
     border-radius: 14px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item-copy {
+    min-width: 0 !important;
   }
 
   .ch-store-v4 .ch-inquiry-drawer .ch-bag-item h3 {
     min-width: 0 !important;
+    max-width: 100% !important;
 
     font-size: 0.9rem !important;
     line-height: 1.25 !important;
@@ -2604,86 +2648,203 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     overflow-wrap: anywhere !important;
   }
 
-  /* Resumen del pedido */
-.ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
-  position: relative !important;
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item-copy > p {
+    min-width: 0 !important;
 
-  display: grid !important;
-  width: auto !important;
-  min-width: 0 !important;
+    font-size: 0.76rem !important;
+    line-height: 1.4 !important;
 
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  align-items: center !important;
-  gap: 8px 16px !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
 
-  margin: 18px 16px 0 !important;
-  padding: 16px !important;
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item-copy > strong {
+    white-space: nowrap !important;
+  }
 
-  border: 1px solid var(--ch-line) !important;
-  border-radius: 14px !important;
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item-actions {
+    min-width: 0 !important;
+  }
 
-  background: var(--ch-surface-raised) !important;
+  /* -----------------------------------------------------------------------
+     Resumen del pedido
+     Estructura REAL:
+     .ch-drawer-summary
+       > div
+         > span
+         > strong
+       > p
+     ----------------------------------------------------------------------- */
 
-  box-sizing: border-box !important;
-}
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary {
+    position: relative !important;
 
-/* Cantidad de piezas */
-.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > span:first-child {
-  min-width: 0 !important;
+    display: block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
 
-  color: var(--ch-ink-muted) !important;
+    flex: 0 0 auto !important;
 
-  font-size: 0.8rem !important;
-  font-weight: 600 !important;
-  line-height: 1.35 !important;
-}
+    margin: 18px 16px 0 !important;
+    padding: 16px !important;
 
-/* Precio total */
-.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > strong {
-  justify-self: end !important;
+    overflow: hidden !important;
 
-  color: var(--ch-ink) !important;
+    border: 1px solid var(--ch-line) !important;
+    border-radius: 15px !important;
 
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 1.45rem !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
+    color: var(--ch-ink) !important;
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--ch-warm-rose) 16%, transparent),
+        transparent 58%
+      ),
+      var(--ch-surface-raised) !important;
 
-  white-space: nowrap !important;
-}
+    box-shadow:
+      0 8px 24px
+        color-mix(in srgb, var(--ch-ink) 5%, transparent) !important;
 
-/* Explicación del total */
-.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > p {
-  grid-column: 1 / -1 !important;
+    box-sizing: border-box !important;
+  }
 
-  max-width: 100% !important;
+  /* Cantidad + precio */
 
-  margin: 3px 0 0 !important;
-  padding-top: 11px !important;
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > div {
+    display: grid !important;
 
-  border-top: 1px solid var(--ch-line) !important;
+    width: 100% !important;
+    min-width: 0 !important;
 
-  color: var(--ch-ink-muted) !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
 
-  font-size: 0.76rem !important;
-  line-height: 1.5 !important;
+    gap: 12px !important;
 
-  overflow-wrap: normal !important;
-}
+    margin: 0 !important;
+    padding: 0 !important;
 
-  /* Campos del cliente */
+    box-sizing: border-box !important;
+  }
+
+  /* "3 piezas" */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > div > span {
+    display: block !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: var(--ch-ink-muted) !important;
+
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* "$580" */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > div > strong {
+    display: block !important;
+
+    justify-self: end !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: var(--ch-ink) !important;
+
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    white-space: nowrap !important;
+  }
+
+  /* Explicación */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > p {
+    display: block !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    margin: 13px 0 0 !important;
+    padding: 11px 0 0 !important;
+
+    border-top: 1px solid
+      color-mix(in srgb, var(--ch-line) 85%, transparent) !important;
+
+    color: var(--ch-ink-muted) !important;
+
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+
+    text-align: left !important;
+
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* -----------------------------------------------------------------------
+     Aviso de límite
+     ----------------------------------------------------------------------- */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-limit-notice {
+    width: auto !important;
+
+    margin: 12px 16px 0 !important;
+    padding: 11px 13px !important;
+
+    border-radius: 11px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* -----------------------------------------------------------------------
+     Campos del cliente
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields {
     display: grid !important;
 
+    width: 100% !important;
     min-width: 0 !important;
 
     gap: 14px !important;
 
-    padding: 18px 16px 0 !important;
+    margin: 0 !important;
+    padding: 20px 16px 0 !important;
+
+    box-sizing: border-box !important;
   }
 
   .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields label {
+    display: block !important;
+
+    width: 100% !important;
     min-width: 0 !important;
+
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields label > span {
+    display: block !important;
+
+    margin-bottom: 7px !important;
   }
 
   .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields input,
@@ -2693,6 +2854,8 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
+
+    margin: 0 !important;
 
     box-sizing: border-box !important;
   }
@@ -2704,74 +2867,167 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     resize: vertical;
   }
 
-  /* Consentimiento */
+  /* -----------------------------------------------------------------------
+     Consentimiento
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
+    position: relative !important;
+
+    display: grid !important;
+
     width: auto !important;
+    min-width: 0 !important;
     max-width: none !important;
 
-    margin: 16px 16px 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    flex: 0 0 auto !important;
 
     grid-template-columns: 20px minmax(0, 1fr) !important;
+    align-items: start !important;
 
     gap: 10px !important;
 
+    margin: 16px 16px 0 !important;
     padding: 12px 13px !important;
 
+    overflow: visible !important;
+
+    border: 1px solid var(--ch-line) !important;
     border-radius: 12px !important;
+
+    background: var(--ch-surface-raised) !important;
 
     box-sizing: border-box !important;
   }
 
-  .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent > span {
+  .ch-store-v4
+    .ch-inquiry-drawer
+    label.ch-privacy-consent
+    > input[type="checkbox"] {
+    width: 19px !important;
+    min-width: 19px !important;
+    max-width: 19px !important;
+
+    height: 19px !important;
+    min-height: 19px !important;
+    max-height: 19px !important;
+
+    margin: 2px 0 0 !important;
+    padding: 0 !important;
+
+    align-self: start !important;
+
+    flex: none !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .ch-store-v4
+    .ch-inquiry-drawer
+    label.ch-privacy-consent
+    > span {
+    display: block !important;
+
+    width: 100% !important;
     min-width: 0 !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: inherit !important;
 
     font-size: 0.78rem !important;
+    font-weight: 500 !important;
     line-height: 1.48 !important;
+
+    text-align: left !important;
 
     white-space: normal !important;
     overflow-wrap: normal !important;
     word-break: normal !important;
+
+    box-sizing: border-box !important;
   }
 
-  /* Error */
-  .ch-store-v4 .ch-inquiry-drawer .ch-modal-error {
+  /* -----------------------------------------------------------------------
+     Errores / avisos
+     ----------------------------------------------------------------------- */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-modal-error,
+  .ch-store-v4 .ch-inquiry-drawer .ch-form-error,
+  .ch-store-v4 .ch-inquiry-drawer .ch-config-warning {
+    width: auto !important;
+
     margin: 14px 16px 0 !important;
+
+    box-sizing: border-box !important;
   }
 
-  /* Botón WhatsApp */
+  /* -----------------------------------------------------------------------
+     WhatsApp
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button {
+    position: relative !important;
+
     display: flex !important;
 
     width: auto !important;
     min-width: 0 !important;
     max-width: none !important;
+
     min-height: 50px !important;
+
+    flex: 0 0 auto !important;
 
     align-items: center !important;
     justify-content: center !important;
 
     gap: 9px !important;
 
-    margin: 18px 16px 0 !important;
+    margin: 20px 16px 0 !important;
     padding: 13px 16px !important;
 
     border-radius: 13px !important;
 
     box-sizing: border-box !important;
 
-    white-space: normal !important;
+    font-size: 0.86rem !important;
+    line-height: 1.25 !important;
 
     text-align: center !important;
+
+    white-space: normal !important;
+
+    transform: none !important;
   }
 
-  /* Texto debajo de WhatsApp */
+  .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button svg {
+    flex: 0 0 auto !important;
+  }
+
+  /* Texto inferior */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-caption {
+    position: relative !important;
+
+    display: block !important;
+
     width: auto !important;
     min-width: 0 !important;
+    max-width: none !important;
+
+    flex: 0 0 auto !important;
 
     margin: 10px 16px 0 !important;
-
     padding: 0 4px !important;
+
+    color: var(--ch-ink-muted) !important;
 
     font-size: 0.72rem !important;
     line-height: 1.5 !important;
@@ -2781,50 +3037,35 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     white-space: normal !important;
     overflow-wrap: normal !important;
     word-break: normal !important;
+
+    box-sizing: border-box !important;
   }
 
-  /* Espacio final para que nada choque con la barra del teléfono */
+  /* -----------------------------------------------------------------------
+     Espacio inferior / safe area
+     ----------------------------------------------------------------------- */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-inquiry-form::after {
-    display: block;
+    display: block !important;
 
-    height: max(24px, env(safe-area-inset-bottom));
+    width: 100% !important;
+    height: max(26px, env(safe-area-inset-bottom)) !important;
 
-    flex: 0 0 max(24px, env(safe-area-inset-bottom));
+    flex: 0 0 max(26px, env(safe-area-inset-bottom)) !important;
 
     content: "";
   }
-
-
-/* Separación definitiva: consentimiento + WhatsApp */
-.ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
-  position: relative !important;
-  flex: 0 0 auto !important;
-  width: auto !important;
-  height: auto !important;
-  min-height: 0 !important;
-  margin: 16px 16px 0 !important;
 }
 
-.ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button {
-  position: relative !important;
-  flex: 0 0 auto !important;
-  margin: 20px 16px 0 !important;
-  transform: none !important;
-}
+/* ==========================================================================
+   Carrito — celulares estrechos
+   ========================================================================== */
 
-.ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-caption {
-  position: relative !important;
-  flex: 0 0 auto !important;
-  margin: 10px 16px 0 !important;
-}
-
-/* Cierra @media (max-width: 760px) */
-}
-
-/* Celulares estrechos */
 @media (max-width: 400px) {
   .ch-store-v4 .ch-inquiry-drawer {
     width: calc(100vw - 10px) !important;
+    max-width: none !important;
+
     border-radius: 20px 0 0 20px !important;
   }
 
@@ -2833,37 +3074,120 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     padding-left: 14px !important;
   }
 
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header > div {
+    padding-right: 45px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-modal-close {
+    right: 13px !important;
+  }
+
+  /* Productos */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-bag-items {
     padding-right: 12px !important;
     padding-left: 12px !important;
   }
 
-  .ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
-  margin-right: 12px !important;
-  margin-left: 12px !important;
-  padding: 14px !important;
-  border-radius: 13px !important;
-}
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item {
+    padding: 11px !important;
+  }
 
-.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > strong {
-  font-size: 1.35rem !important;
-}
+  /* Resumen */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
+
+    padding: 14px !important;
+
+    border-radius: 13px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > div {
+    gap: 10px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > div > span {
+    font-size: 0.76rem !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > div > strong {
+    font-size: 1.35rem !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-summary > p {
+    margin-top: 11px !important;
+    padding-top: 10px !important;
+
+    font-size: 0.73rem !important;
+  }
+
+  /* Aviso de límite */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-limit-notice {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
+  }
+
+  /* Formulario */
 
   .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields {
     padding-right: 12px !important;
     padding-left: 12px !important;
   }
 
+  /* Consentimiento */
+
   .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
+    grid-template-columns: 19px minmax(0, 1fr) !important;
+
+    gap: 9px !important;
+
     margin-right: 12px !important;
     margin-left: 12px !important;
 
     padding: 11px 12px !important;
   }
 
+  .ch-store-v4
+    .ch-inquiry-drawer
+    label.ch-privacy-consent
+    > input[type="checkbox"] {
+    width: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+
+    height: 18px !important;
+    min-height: 18px !important;
+    max-height: 18px !important;
+  }
+
+  .ch-store-v4
+    .ch-inquiry-drawer
+    label.ch-privacy-consent
+    > span {
+    font-size: 0.76rem !important;
+    line-height: 1.48 !important;
+  }
+
+  /* Errores */
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-modal-error,
+  .ch-store-v4 .ch-inquiry-drawer .ch-form-error,
+  .ch-store-v4 .ch-inquiry-drawer .ch-config-warning {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
+  }
+
+  /* WhatsApp */
+
   .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button {
     margin-right: 12px !important;
     margin-left: 12px !important;
+
+    padding-right: 13px !important;
+    padding-left: 13px !important;
   }
 
   .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-caption {
