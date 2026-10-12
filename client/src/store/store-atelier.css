@@ -1,0 +1,119 @@
+/* Casa Hebra Atelier — detalles globales que conectan toda la experiencia. */
+
+.ch-store-v4 {
+  --ch-radius-sm: 14px;
+  --ch-radius-md: 22px;
+  --ch-radius-lg: 36px;
+  --ch-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store-v4 .ch-stitch-progress {
+  position: fixed;
+  z-index: 1200;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+.ch-store-v4 .ch-stitch-progress > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(
+    90deg,
+    var(--ch-accent-surface, #963d64),
+    color-mix(in srgb, var(--ch-accent-surface, #963d64) 62%, #f0a9a5),
+    color-mix(in srgb, var(--ch-accent-surface, #963d64) 52%, #88a589)
+  );
+  box-shadow: 0 1px 8px color-mix(in srgb, var(--ch-accent-surface, #963d64) 44%, transparent);
+  transform-origin: 0 50%;
+}
+
+.ch-store-v4 .ch-back-to-top {
+  position: fixed;
+  z-index: 210;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: max(18px, env(safe-area-inset-left));
+  display: inline-flex;
+  min-height: 43px;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: 1px solid color-mix(in srgb, var(--ch-line-strong) 70%, transparent);
+  border-radius: 999px;
+  color: var(--ch-ink);
+  background: color-mix(in srgb, var(--ch-surface-raised) 92%, transparent);
+  box-shadow: var(--ch-shadow-sm);
+  font-size: 0.73rem;
+  font-weight: 780;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+}
+
+.ch-store-v4 .ch-back-to-top:hover {
+  color: var(--ch-on-accent, #ffffff);
+  border-color: var(--ch-accent-surface, #963d64);
+  background: var(--ch-accent-surface, #963d64);
+}
+
+.ch-store-v4 :is(.ch-button, .ch-card-action, .ch-bag-button, .ch-floating-bag) {
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 260ms var(--ch-ease-out),
+    transform 260ms var(--ch-ease-out);
+}
+
+.ch-store-v4 :is(.ch-button, .ch-card-action, .ch-bag-button, .ch-floating-bag):active:not(:disabled) {
+  transform: translateY(1px) scale(0.985);
+}
+
+.ch-store-v4 .ch-story.is-copy-only {
+  min-height: 0;
+  grid-template-columns: minmax(0, 760px);
+}
+
+@media (max-width: 620px) {
+  .ch-store-v4 .ch-back-to-top {
+    bottom: calc(max(18px, env(safe-area-inset-bottom)) + 61px);
+  }
+
+  .ch-store-v4 .ch-back-to-top span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .ch-store-v4 .ch-back-to-top {
+    width: 43px;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch-store-v4 .ch-stitch-progress {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ch-store-v4 .ch-back-to-top {
+    color: ButtonText;
+    border-color: ButtonBorder;
+    background: ButtonFace;
+  }
+}

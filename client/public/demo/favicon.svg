@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Casa Hebra</title>
+  <rect width="64" height="64" rx="18" fill="#FBF8F3"/>
+  <path d="M9 32c0-14 9.8-23.8 23-23.8 12.5 0 22.2 8.9 22.2 21.5 0 7.6-3.5 14.2-9.6 18.5-3.8 2.7-8.5 4.2-13.6 4.2C18.3 52.4 9 44.1 9 32Z" fill="#963D64" fill-opacity=".1" stroke="#7D2F50" stroke-width="2.2"/>
+  <path d="M14.2 21.8c12.7 2.3 25.5 10.9 34.3 24.1M15.6 44.3c4.1-14.2 12.7-26.2 26.8-33.3M10.8 34.4c12.4-5.8 26.7-6.6 41.5-2.3" fill="none" stroke="#963D64" stroke-width="1.7" stroke-linecap="round" opacity=".7"/>
+  <path d="M22.8 17.7c3.7 8.5 3.9 18.4.2 27.7M42.1 17.1c-4 8.9-3.9 19.2.1 28.5M24.3 31.5c5.7-3 11.2-3.2 16.5-.4" fill="none" stroke="#7D2F50" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="m44.7 53.1 12.9-37.4c1-3 5.1-2.2 4.7.8-.3 2.3-2.7 3.8-4.8 3.2M39.6 48.2c6.8 4.8 12.5 6.5 18.9 4.8" fill="none" stroke="#315F49" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

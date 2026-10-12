@@ -1,0 +1,25 @@
+{
+  "name": "casa-hebra-server",
+  "version": "2.1.0",
+  "private": true,
+  "description": "API and production server for Casa Hebra",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node scripts/start-production.js",
+    "start:prod": "node scripts/start-production.js",
+    "check": "node scripts/check.js",
+    "check:storage": "node scripts/check-supabase.js",
+    "test": "node --test --test-concurrency=1",
+    "test:pure": "node scripts/run-tests.js pure",
+    "test:integration": "node scripts/run-tests.js integration",
+    "migrate:database": "node scripts/migrate-to-supabase.js"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "dependencies": {
+    "express": "4.22.2",
+    "multer": "2.3.0"
+  }
+}

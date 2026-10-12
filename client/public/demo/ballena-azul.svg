@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Ballena Azul tejida a crochet</title>
+  <desc id="desc">Ballena amigurumi azul con vientre marfil, aletas suaves y burbujas decorativas.</desc>
+  <defs>
+    <linearGradient id="bg" x1="91" y1="51" x2="1096" y2="1147" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9F6EF"/>
+      <stop offset="1" stop-color="#DCE6E1"/>
+    </linearGradient>
+    <linearGradient id="whale" x1="276" y1="373" x2="907" y2="872" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FAAA7"/>
+      <stop offset=".54" stop-color="#698D8B"/>
+      <stop offset="1" stop-color="#4F7372"/>
+    </linearGradient>
+    <linearGradient id="belly" x1="400" y1="586" x2="844" y2="875" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#DDCFC1"/>
+    </linearGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="180%">
+      <feDropShadow dx="0" dy="27" stdDeviation="26" flood-color="#2E4746" flood-opacity=".2"/>
+    </filter>
+    <filter id="blur"><feGaussianBlur stdDeviation="25"/></filter>
+    <pattern id="stitch" width="40" height="31" patternUnits="userSpaceOnUse">
+      <path d="M2 17c8-11 17-11 26 0 5 7 9 7 12 4" fill="none" stroke="#F7F1E8" stroke-opacity=".25" stroke-width="5" stroke-linecap="round"/>
+    </pattern>
+    <clipPath id="whaleClip"><path d="M269 517c72-153 264-210 439-142 87 34 155 93 194 168 80 155-53 354-264 370-184 14-363-51-406-171-28-79-15-165 37-225Z"/></clipPath>
+    <clipPath id="bellyClip"><path d="M340 704c95 118 272 160 441 100 55-19 101-51 138-92-17 108-125 191-281 201-144 9-285-29-362-105 9-40 31-75 64-104Z"/></clipPath>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="180" cy="185" r="215" fill="#D9B4A3" opacity=".3"/>
+  <path d="M0 889c155-92 317-83 486 26 184 119 422 108 714-35v320H0Z" fill="#7FA09C" opacity=".2"/>
+  <path d="M0 993c160-73 321-57 483 47 181 116 420 107 717-25v185H0Z" fill="#5C8582" opacity=".17"/>
+  <path d="M1017 93c-76 46-113 107-110 184" fill="none" stroke="#B7674B" stroke-width="12" stroke-linecap="round" opacity=".28"/>
+  <ellipse cx="588" cy="958" rx="378" ry="74" fill="#365B59" opacity=".14" filter="url(#blur)"/>
+  <g filter="url(#shadow)">
+    <path d="M895 567c55-124 154-158 245-99-26 75-82 116-168 122 84 29 123 84 117 163-105 12-174-42-204-154Z" fill="#5A7E7C"/>
+    <path d="M917 569c55-65 117-87 185-67M918 607c59 21 100 57 123 109" fill="none" stroke="#F7F1E8" stroke-width="8" stroke-dasharray="3 18" stroke-linecap="round" opacity=".35"/>
+    <path d="M269 517c72-153 264-210 439-142 87 34 155 93 194 168 80 155-53 354-264 370-184 14-363-51-406-171-28-79-15-165 37-225Z" fill="url(#whale)"/>
+    <rect x="203" y="339" width="764" height="600" fill="url(#stitch)" clip-path="url(#whaleClip)"/>
+    <path d="M340 704c95 118 272 160 441 100 55-19 101-51 138-92-17 108-125 191-281 201-144 9-285-29-362-105 9-40 31-75 64-104Z" fill="url(#belly)"/>
+    <path d="M312 780c127 73 264 101 411 83" fill="none" stroke="#B7674B" stroke-width="7" stroke-dasharray="3 18" stroke-linecap="round" opacity=".24" clip-path="url(#bellyClip)"/>
+    <path d="M485 782c-45 119-121 157-229 115 13-95 77-145 191-153Z" fill="#5B7F7D"/>
+    <path d="M442 777c-60 47-110 76-150 87" fill="none" stroke="#F7F1E8" stroke-width="8" stroke-dasharray="3 18" stroke-linecap="round" opacity=".33"/>
+    <ellipse cx="392" cy="544" rx="22" ry="27" fill="#263F3E"/>
+    <circle cx="384" cy="535" r="7" fill="#FFFDF8"/>
+    <path d="M333 613c31 30 68 31 110 4" fill="none" stroke="#365755" stroke-width="11" stroke-linecap="round"/>
+    <ellipse cx="319" cy="589" rx="36" ry="19" fill="#D89083" opacity=".38"/>
+    <path d="M285 495c63-51 137-80 222-85" fill="none" stroke="#B9CDCA" stroke-width="9" stroke-linecap="round" opacity=".42"/>
+  </g>
+  <g fill="none" stroke="#729693">
+    <circle cx="776" cy="276" r="29" stroke-width="9" opacity=".62"/>
+    <circle cx="842" cy="207" r="20" stroke-width="8" opacity=".52"/>
+    <circle cx="894" cy="141" r="12" stroke-width="6" opacity=".44"/>
+  </g>
+  <path d="M692 365c-3-76 37-122 119-138" fill="none" stroke="#729693" stroke-width="12" stroke-linecap="round" opacity=".38"/>
+  <circle cx="169" cy="736" r="11" fill="#B7674B" opacity=".4"/>
+</svg>

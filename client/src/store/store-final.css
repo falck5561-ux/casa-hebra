@@ -1,0 +1,517 @@
+/* Casa Hebra · capa final de composición.
+   Mantiene una sola lectura visual, evita solapes y consolida responsive. */
+
+.ch-store.ch-store-v4 {
+  --ch-font-body: "Segoe UI Variable Text", "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+  --ch-font-display: "Palatino Linotype", "Book Antiqua", "Iowan Old Style", Palatino, Georgia, serif;
+  font-family: var(--ch-font-body);
+  background:
+    radial-gradient(circle at 7% 3%, color-mix(in srgb, var(--ch-warm-rose) 36%, transparent), transparent 24rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ch-surface) 36%, transparent), transparent 42rem),
+    var(--ch-canvas);
+}
+
+.ch-store.ch-store-v4 :is(h1, h2, h3, .ch-logo strong),
+.ch-store.ch-store-v4 .ch-hero-feature-caption strong,
+.ch-store.ch-store-v4 .ch-story-photo > span,
+.ch-store.ch-store-v4 .ch-cz-preview-info h3,
+.ch-store.ch-store-v4 .ch-customizer-intro h2,
+.ch-store.ch-store-v4 .ch-cz-step-heading h3,
+.ch-store.ch-store-v4 .ch-cz-success h4 {
+  font-family: var(--ch-font-display);
+  font-kerning: normal;
+}
+
+.ch-store.ch-store-v4 :is(p, li, small, label, input, textarea, select, button, a) {
+  text-rendering: optimizeLegibility;
+}
+
+/* Navegación más limpia: el número decorativo no compite con el texto. */
+.ch-store.ch-store-v4 .ch-desktop-nav .ch-nav-index {
+  display: none;
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav a {
+  font-size: 0.81rem;
+  letter-spacing: 0.015em;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav {
+  max-height: calc(100dvh - 76px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Portada: escala estable sin textos ni distintivos encima del producto. */
+.ch-store.ch-store-v4 .ch-hero h1 {
+  overflow-wrap: break-word;
+  letter-spacing: -0.045em;
+}
+
+.ch-store.ch-store-v4 .ch-hero-feature,
+.ch-store.ch-store-v4 .ch-hero-feature::after,
+.ch-store.ch-store-v4 .ch-hero-product-photo {
+  overflow: hidden;
+}
+
+.ch-store.ch-store-v4 .ch-handmade-stamp {
+  transform: none;
+}
+
+/* El catálogo es la única galería comercial: tarjetas de altura natural. */
+.ch-store.ch-store-v4 .ch-catalogue {
+  padding-top: clamp(88px, 9vw, 128px);
+  border-top: 0;
+}
+
+.ch-store.ch-store-v4 .ch-product-grid:not(.ch-featured-grid) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ch-store.ch-store-v4 .ch-product-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--ch-ink) 6%, transparent);
+}
+
+.ch-store.ch-store-v4 .ch-product-card-visual {
+  aspect-ratio: 1.04;
+}
+
+.ch-store.ch-store-v4 .ch-product-card-body {
+  display: flex;
+  min-height: 292px;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+}
+
+.ch-store.ch-store-v4 .ch-product-card-heading {
+  min-width: 0;
+}
+
+.ch-store.ch-store-v4 .ch-product-card h3 {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: clamp(1.32rem, 1.55vw, 1.62rem);
+  line-height: 1.06;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.ch-store.ch-store-v4 .ch-product-short {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.ch-store.ch-store-v4 .ch-customizable-label {
+  margin-top: auto;
+}
+
+.ch-store.ch-store-v4 .ch-product-card-footer {
+  margin-top: 0;
+}
+
+.ch-store.ch-store-v4 :is(.ch-status-pill, .ch-featured-pill) {
+  max-width: calc(100% - 28px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ch-store.ch-store-v4 .ch-card-action {
+  min-height: 46px;
+  border-radius: 12px;
+}
+
+/* Un único personalizador, visualmente unido al catálogo. */
+.ch-store.ch-store-v4 .ch-customizer {
+  margin-top: clamp(38px, 5vw, 72px);
+  margin-bottom: clamp(88px, 10vw, 144px);
+}
+
+.ch-store.ch-store-v4 .ch-customizer-intro h2 {
+  letter-spacing: -0.04em;
+}
+
+.ch-store.ch-store-v4 .ch-customizer-shell {
+  border-radius: 30px;
+  box-shadow: 0 26px 72px color-mix(in srgb, var(--ch-ink) 12%, transparent);
+}
+
+.ch-store.ch-store-v4 .ch-cz-preview {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 208, 224, 0.24), transparent 21rem),
+    radial-gradient(circle at 92% 92%, rgba(148, 205, 188, 0.2), transparent 23rem),
+    linear-gradient(148deg, #76304f 0%, #51243b 48%, #25212a 100%);
+}
+
+.ch-store.ch-store-v4 .ch-cz-photo-wrap {
+  border-radius: 28px;
+}
+
+.ch-store.ch-store-v4 .ch-cz-handmade-seal {
+  display: none;
+}
+
+.ch-store.ch-store-v4 :is(
+  .ch-cz-progress button small,
+  .ch-cz-field > span small,
+  .ch-cz-counter,
+  .ch-cz-summary dt,
+  .ch-cz-total small
+) {
+  font-size: 0.75rem;
+}
+
+.ch-store.ch-store-v4 .ch-cz-workspace {
+  min-width: 0;
+}
+
+/* Historia sin collage superpuesto: las fotos siguen siendo protagonistas. */
+.ch-store.ch-store-v4 .ch-story {
+  min-height: 0;
+}
+
+.ch-store.ch-store-v4 .ch-story-gallery {
+  display: grid;
+  min-height: 500px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ch-store.ch-store-v4 .ch-story-photo,
+.ch-store.ch-store-v4 .ch-story-photo.is-main,
+.ch-store.ch-store-v4 .ch-story-photo.is-secondary,
+.ch-store.ch-store-v4 .ch-story-photo.is-tertiary {
+  position: relative;
+  inset: auto;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  transform: none;
+}
+
+.ch-store.ch-store-v4 .ch-story-photo.is-main {
+  grid-row: 1 / 3;
+}
+
+.ch-store.ch-store-v4 .ch-story-photo:is(.is-main, .is-secondary, .is-tertiary):hover {
+  transform: translateY(-3px);
+}
+
+/* Las utilidades flotantes no deben cubrir formularios o tarjetas. */
+.ch-store.ch-store-v4 .ch-floating-bag,
+.ch-store.ch-store-v4 .ch-back-to-top {
+  border-radius: 16px;
+}
+
+.ch-store.ch-store-v4 .ch-toast {
+  max-width: min(430px, calc(100vw - 32px));
+}
+
+@media (max-width: 1240px) {
+  .ch-store.ch-store-v4 .ch-product-grid:not(.ch-featured-grid) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .ch-store.ch-store-v4 .ch-product-grid:not(.ch-featured-grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ch-store.ch-store-v4 .ch-product-card-body {
+    min-height: 270px;
+  }
+
+  .ch-store.ch-store-v4 .ch-customizer-shell {
+    border-radius: 26px;
+  }
+
+  .ch-store.ch-store-v4 .ch-story-gallery {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .ch-store.ch-store-v4 .ch-logo {
+    max-width: calc(100vw - 180px);
+  }
+
+  .ch-store.ch-store-v4 .ch-bag-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-bag-button {
+    min-width: 48px;
+    justify-content: center;
+    padding-inline: 12px;
+  }
+
+  .ch-store.ch-store-v4 .ch-customizer {
+    width: calc(100% - 28px);
+  }
+}
+
+@media (max-width: 620px) {
+  .ch-store.ch-store-v4 .ch-logo small {
+    display: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo {
+    max-width: calc(100vw - 154px);
+  }
+
+  .ch-store.ch-store-v4 .ch-logo strong {
+    font-size: 1.12rem;
+  }
+
+  .ch-store.ch-store-v4 .ch-hero {
+    padding-inline: 20px;
+  }
+
+  .ch-store.ch-store-v4 .ch-hero h1 {
+    font-size: clamp(2.55rem, 12.5vw, 3.55rem);
+    line-height: 1;
+  }
+
+  .ch-store.ch-store-v4 .ch-hero-showcase {
+    min-height: 370px;
+  }
+
+  .ch-store.ch-store-v4 .ch-hero-feature {
+    top: 42px;
+    width: 100%;
+    height: 328px;
+  }
+
+  .ch-store.ch-store-v4 .ch-trust-strip {
+    width: calc(100% - 28px);
+  }
+
+  .ch-store.ch-store-v4 .ch-section,
+  .ch-store.ch-store-v4 .ch-customizer,
+  .ch-store.ch-store-v4 .ch-story {
+    width: calc(100% - 24px);
+  }
+
+  .ch-store.ch-store-v4 .ch-product-grid:not(.ch-featured-grid) {
+    grid-template-columns: 1fr;
+  }
+
+  .ch-store.ch-store-v4 .ch-product-card-body {
+    min-height: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-product-card-visual {
+    aspect-ratio: 1.08;
+  }
+
+  .ch-store.ch-store-v4 .ch-customizer-intro h2 {
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+  }
+
+  .ch-store.ch-store-v4 .ch-customizer-shell {
+    overflow: clip;
+    border-radius: 22px;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    gap: 10px 16px;
+    padding: 18px;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview-topline {
+    grid-column: 1 / -1;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-photo-stage {
+    min-height: 112px;
+    grid-column: 1;
+    grid-row: 2 / 5;
+    margin: 4px 0 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-photo-wrap {
+    width: 112px;
+    height: 112px;
+    border-radius: 22px;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview-info {
+    grid-column: 2;
+    grid-row: 2;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    border: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview-info h3 {
+    font-size: 1.22rem;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview-tags {
+    grid-column: 2;
+    grid-row: 3;
+    gap: 5px;
+    margin: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview-tags li {
+    min-height: 30px;
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-estimate-note {
+    grid-column: 2;
+    grid-row: 4;
+    margin: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-story-gallery {
+    min-height: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+  }
+
+  .ch-store.ch-store-v4 .ch-story-photo.is-main {
+    min-height: 280px;
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .ch-store.ch-store-v4 .ch-story-photo.is-secondary,
+  .ch-store.ch-store-v4 .ch-story-photo.is-tertiary {
+    min-height: 205px;
+  }
+
+  .ch-store.ch-store-v4 .ch-back-to-top {
+    display: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-floating-bag {
+    width: 54px;
+    height: 54px;
+    min-height: 54px;
+    justify-content: center;
+    padding: 0;
+    border-radius: 17px;
+  }
+
+  .ch-store.ch-store-v4 .ch-floating-bag > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-toast {
+    right: 12px;
+    bottom: calc(max(14px, env(safe-area-inset-bottom)) + 64px);
+    left: 12px;
+    width: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .ch-store.ch-store-v4 .ch-cz-progress button small {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-progress {
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .ch-store.ch-store-v4 .ch-header {
+    padding-inline: 12px;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo {
+    max-width: calc(100vw - 142px);
+    gap: 8px;
+  }
+
+  .ch-store.ch-store-v4 .ch-brand-mark {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .ch-store.ch-store-v4 .ch-hero h1 {
+    font-size: clamp(2.3rem, 12.2vw, 3rem);
+  }
+
+  .ch-store.ch-store-v4 .ch-hero-showcase {
+    min-height: 332px;
+  }
+
+  .ch-store.ch-store-v4 .ch-hero-feature {
+    height: 292px;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-preview {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 8px 12px;
+    padding: 16px;
+  }
+
+  .ch-store.ch-store-v4 .ch-cz-photo-stage,
+  .ch-store.ch-store-v4 .ch-cz-photo-wrap {
+    width: 96px;
+    height: 96px;
+    min-height: 96px;
+  }
+
+  .ch-store.ch-store-v4 .ch-story-photo.is-main {
+    min-height: 245px;
+  }
+
+  .ch-store.ch-store-v4 .ch-story-photo.is-secondary,
+  .ch-store.ch-store-v4 .ch-story-photo.is-tertiary {
+    min-height: 175px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch-store.ch-store-v4 .ch-story-photo,
+  .ch-store.ch-store-v4 .ch-story-photo:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Conejita Nube tejida a crochet</title>
+  <desc id="desc">Conejita amigurumi color marfil con vestido terracota, flores y detalles tejidos.</desc>
+  <defs>
+    <linearGradient id="bg" x1="93" y1="64" x2="1100" y2="1152" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF9"/>
+      <stop offset="1" stop-color="#E8DED2"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="416" y1="190" x2="776" y2="969" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset=".52" stop-color="#EDE1D4"/>
+      <stop offset="1" stop-color="#D7C5B6"/>
+    </linearGradient>
+    <linearGradient id="dress" x1="426" y1="604" x2="757" y2="983" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C8795C"/>
+      <stop offset="1" stop-color="#9F503C"/>
+    </linearGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="180%">
+      <feDropShadow dx="0" dy="25" stdDeviation="24" flood-color="#382C29" flood-opacity=".18"/>
+    </filter>
+    <filter id="blur"><feGaussianBlur stdDeviation="25"/></filter>
+    <pattern id="stitch" width="32" height="28" patternUnits="userSpaceOnUse">
+      <path d="M2 16c7-9 14-9 21 0 3 4 6 5 9 3" fill="none" stroke="#B7674B" stroke-opacity=".14" stroke-width="4" stroke-linecap="round"/>
+    </pattern>
+    <pattern id="dressStitch" width="34" height="29" patternUnits="userSpaceOnUse">
+      <path d="M2 16c7-10 15-10 22 0 4 5 7 5 10 2" fill="none" stroke="#F7F1E8" stroke-opacity=".26" stroke-width="4" stroke-linecap="round"/>
+    </pattern>
+    <clipPath id="headClip"><ellipse cx="597" cy="454" rx="201" ry="191"/></clipPath>
+    <clipPath id="dressClip"><path d="M437 624c75-43 245-45 321 0l77 323c13 55-30 107-87 107H446c-58 0-101-54-86-110Z"/></clipPath>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <path d="M0 831c136-67 258-57 365 29 124 100 256 146 397 139 147-7 293-68 438-182v383H0Z" fill="#87917A" opacity=".2"/>
+  <circle cx="1033" cy="204" r="226" fill="#D9B4A3" opacity=".42"/>
+  <path d="M90 160c65 17 108 52 130 105" fill="none" stroke="#87917A" stroke-width="12" stroke-linecap="round" opacity=".28"/>
+  <ellipse cx="601" cy="1048" rx="317" ry="69" fill="#493730" opacity=".13" filter="url(#blur)"/>
+  <g filter="url(#shadow)">
+    <ellipse cx="468" cy="284" rx="82" ry="224" transform="rotate(-11 468 284)" fill="url(#cream)"/>
+    <ellipse cx="724" cy="284" rx="82" ry="224" transform="rotate(11 724 284)" fill="url(#cream)"/>
+    <ellipse cx="475" cy="283" rx="38" ry="167" transform="rotate(-11 475 283)" fill="#E5BEB0"/>
+    <ellipse cx="717" cy="283" rx="38" ry="167" transform="rotate(11 717 283)" fill="#E5BEB0"/>
+    <path d="M472 139c-16 66-12 145 11 236M718 139c15 65 11 143-11 233" fill="none" stroke="#FFFDF8" stroke-width="7" stroke-dasharray="2 17" stroke-linecap="round" opacity=".65"/>
+    <ellipse cx="597" cy="454" rx="201" ry="191" fill="url(#cream)"/>
+    <rect x="383" y="249" width="430" height="410" fill="url(#stitch)" clip-path="url(#headClip)"/>
+    <ellipse cx="527" cy="447" rx="17" ry="24" fill="#382C29"/>
+    <ellipse cx="667" cy="447" rx="17" ry="24" fill="#382C29"/>
+    <circle cx="521" cy="440" r="5" fill="#FFFDF8"/>
+    <circle cx="661" cy="440" r="5" fill="#FFFDF8"/>
+    <path d="M572 514c10-22 39-22 50 0 6 13-5 33-25 33s-31-20-25-33Z" fill="#B7674B"/>
+    <path d="M597 548c-1 29-22 44-48 47M597 548c1 29 22 44 48 47" fill="none" stroke="#7B574A" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="476" cy="514" rx="33" ry="17" fill="#D99588" opacity=".46"/>
+    <ellipse cx="718" cy="514" rx="33" ry="17" fill="#D99588" opacity=".46"/>
+    <path d="M419 674c-89 69-126 161-111 277 7 53 48 84 91 67 34-14 43-47 30-88-21-66 5-122 73-169Z" fill="url(#cream)"/>
+    <path d="M775 674c89 69 126 161 111 277-7 53-48 84-91 67-34-14-43-47-30-88 21-66-5-122-73-169Z" fill="url(#cream)"/>
+    <path d="M437 624c75-43 245-45 321 0l77 323c13 55-30 107-87 107H446c-58 0-101-54-86-110Z" fill="url(#dress)"/>
+    <rect x="344" y="604" width="510" height="468" fill="url(#dressStitch)" clip-path="url(#dressClip)"/>
+    <path d="M423 642c109 45 225 45 347-1" fill="none" stroke="#F2D7C8" stroke-width="22"/>
+    <path d="M463 658c-14 100-11 226 10 378M729 655c17 102 14 230-9 382" fill="none" stroke="#6F3B30" stroke-width="8" stroke-dasharray="3 18" stroke-linecap="round" opacity=".35"/>
+    <path d="M516 630c1 59 27 94 80 105 53-12 80-48 80-107" fill="#87917A"/>
+    <path d="M534 655c39 21 81 21 124-2" fill="none" stroke="#F7F1E8" stroke-width="8" stroke-dasharray="2 15" stroke-linecap="round" opacity=".66"/>
+    <ellipse cx="475" cy="1018" rx="93" ry="53" fill="#E7D8CB"/>
+    <ellipse cx="719" cy="1018" rx="93" ry="53" fill="#E7D8CB"/>
+  </g>
+  <g transform="translate(849 817) rotate(10)">
+    <path d="M58 58c-34-65-20-110 34-136 10 59-2 103-34 136ZM68 59c55-51 104-53 147-7-55 30-104 32-147 7Z" fill="#87917A"/>
+    <path d="M38 47c64-31 126 2 140 76 14 73-31 159-91 186-54-27-94-99-88-169 4-48 16-78 39-93Z" fill="#D47E4A"/>
+    <path d="M31 99c41 18 85 18 133-1M17 151c51 16 101 13 150-8M30 206c38 6 77 1 117-15" fill="none" stroke="#F1B17F" stroke-width="8" stroke-linecap="round" opacity=".65"/>
+  </g>
+  <path d="M166 874c44-45 95-58 154-39" fill="none" stroke="#B7674B" stroke-width="12" stroke-linecap="round" opacity=".3"/>
+</svg>

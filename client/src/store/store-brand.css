@@ -1,0 +1,542 @@
+/* Casa Hebra — firma visual y navegación del atelier.
+   Se mantiene en una capa propia para que la marca sea consistente en ambos temas. */
+
+.ch-store.ch-store-v4 .ch-announcement-dot {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.ch-store.ch-store-v4 .ch-announcement-dot::after {
+  position: absolute;
+  inset: -5px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: 0;
+  animation: ch-brand-pulse 2.8s ease-out infinite;
+}
+
+.ch-store.ch-store-v4 .ch-header {
+  isolation: isolate;
+}
+
+.ch-store.ch-store-v4 .ch-header::after {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0 14%,
+    color-mix(in srgb, var(--ch-accent, #963d64) 24%, transparent) 34%,
+    color-mix(in srgb, var(--ch-accent, #963d64) 56%, transparent) 50%,
+    color-mix(in srgb, var(--ch-accent, #963d64) 24%, transparent) 66%,
+    transparent 86% 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.ch-store.ch-store-v4 .ch-logo {
+  gap: 12px;
+  min-height: 48px;
+}
+
+.ch-store.ch-store-v4 .ch-logo-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.ch-store.ch-store-v4 .ch-logo-name-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+}
+
+.ch-store.ch-store-v4 .ch-logo-name-row strong {
+  min-width: 0;
+}
+
+.ch-store.ch-store-v4 .ch-logo strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.22rem, 1.55vw, 1.42rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.ch-store.ch-store-v4 .ch-logo small {
+  margin-top: 0;
+  font-size: 0.64rem;
+  font-weight: 720;
+  letter-spacing: 0.13em;
+}
+
+.ch-store.ch-store-v4 .ch-logo-stitches {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+}
+
+.ch-store.ch-store-v4 .ch-logo-stitches i {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--ch-accent, #7d2f50);
+}
+
+.ch-store.ch-store-v4 .ch-logo-stitches i:nth-child(2) {
+  opacity: 0.62;
+}
+
+.ch-store.ch-store-v4 .ch-logo-stitches i:nth-child(3) {
+  opacity: 0.34;
+}
+
+.ch-store.ch-store-v4 .ch-brand-mark {
+  position: relative;
+  display: grid;
+  width: 47px;
+  height: 47px;
+  flex: 0 0 47px;
+  place-items: center;
+  overflow: visible;
+  border: 1px solid color-mix(in srgb, var(--ch-accent, #963d64) 30%, var(--ch-line));
+  border-radius: 50% 50% 45% 50%;
+  color: var(--ch-accent, #7d2f50);
+  background: color-mix(in srgb, var(--ch-surface) 94%, var(--ch-warm-rose));
+  box-shadow:
+    0 8px 22px color-mix(in srgb, var(--ch-ink) 8%, transparent),
+    inset 0 0 0 4px color-mix(in srgb, var(--ch-accent, #963d64) 4%, transparent);
+  transition: translate 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.ch-store.ch-store-v4 .ch-brand-mark::before {
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed color-mix(in srgb, var(--ch-accent, #963d64) 16%, transparent);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.ch-store.ch-store-v4 .ch-brand-mark.is-compact {
+  width: 39px;
+  height: 39px;
+  flex-basis: 39px;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol {
+  width: 37px;
+  height: 37px;
+  overflow: visible;
+}
+
+.ch-store.ch-store-v4 .ch-brand-mark.is-compact .ch-brand-symbol {
+  width: 31px;
+  height: 31px;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol :is(path, circle) {
+  vector-effect: non-scaling-stroke;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-hook {
+  stroke: var(--ch-ink-muted);
+  stroke-width: 2.4;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-ball {
+  fill: color-mix(in srgb, var(--ch-accent, #963d64) 10%, transparent);
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-weave {
+  stroke: color-mix(in srgb, currentColor 76%, var(--ch-ink));
+  stroke-width: 1.35;
+  opacity: 0.75;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-monogram {
+  stroke: currentColor;
+  stroke-width: 2.45;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-thread-tail {
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 0;
+}
+
+.ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-stitch {
+  fill: var(--ch-ink-muted);
+  stroke: none;
+}
+
+.ch-store.ch-store-v4 .ch-logo:hover .ch-brand-mark,
+.ch-store.ch-store-v4 .ch-logo:focus-visible .ch-brand-mark {
+  border-color: color-mix(in srgb, var(--ch-accent, #963d64) 58%, var(--ch-line));
+  box-shadow:
+    0 11px 26px color-mix(in srgb, var(--ch-ink) 11%, transparent),
+    inset 0 0 0 4px color-mix(in srgb, var(--ch-accent, #963d64) 7%, transparent);
+  translate: 0 -1px;
+}
+
+.ch-store.ch-store-v4 .ch-logo:hover .ch-mark-thread-tail,
+.ch-store.ch-store-v4 .ch-logo:focus-visible .ch-mark-thread-tail {
+  animation: ch-brand-draw 700ms ease both;
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav {
+  gap: clamp(18px, 2.55vw, 36px);
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0 10px;
+  color: var(--ch-ink-muted);
+  font-size: 0.77rem;
+  font-weight: 710;
+  letter-spacing: 0.025em;
+  transition: color 180ms ease;
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav .ch-nav-index {
+  color: var(--ch-accent, #7d2f50);
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0.62;
+  transition: opacity 180ms ease, translate 180ms ease;
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav a::after {
+  right: 0;
+  bottom: 6px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ch-accent-surface, #963d64) 0 6px,
+    transparent 6px 9px
+  );
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav a:is(:hover, :focus-visible, .is-active) {
+  color: var(--ch-ink);
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav a:is(:hover, :focus-visible, .is-active)::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.ch-store.ch-store-v4 .ch-desktop-nav a:is(:hover, :focus-visible, .is-active) .ch-nav-index {
+  opacity: 1;
+  translate: 0 -1px;
+}
+
+.ch-store.ch-store-v4 .ch-icon-button,
+.ch-store.ch-store-v4 .ch-bag-button,
+.ch-store.ch-store-v4 .ch-menu-button {
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ch-ink) 5%, transparent);
+}
+
+.ch-store.ch-store-v4 .ch-bag-count {
+  box-shadow: 0 3px 9px color-mix(in srgb, var(--ch-accent-surface, #963d64) 26%, transparent);
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav {
+  gap: 0;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ch-accent, #963d64) 4%, transparent), transparent 108px),
+    var(--ch-surface);
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 4px 7px;
+  color: var(--ch-ink-muted);
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav-heading span {
+  width: 44px;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--ch-accent, #963d64) 0 5px, transparent 5px 8px);
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav > a {
+  position: relative;
+  display: grid;
+  min-height: 58px;
+  grid-template-columns: 31px minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 5px;
+  color: var(--ch-ink);
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav .ch-mobile-nav-index {
+  color: var(--ch-accent, #7d2f50);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav .ch-mobile-nav-label {
+  color: inherit;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav-stitch {
+  position: relative;
+  width: 20px;
+  height: 12px;
+  justify-self: end;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav-stitch::before,
+.ch-store.ch-store-v4 .ch-mobile-nav-stitch::after {
+  position: absolute;
+  top: 5px;
+  width: 10px;
+  height: 1px;
+  background: var(--ch-line-strong);
+  content: "";
+  transition: background 180ms ease, rotate 180ms ease;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav-stitch::before {
+  left: 1px;
+  rotate: 32deg;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav-stitch::after {
+  right: 1px;
+  rotate: -32deg;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav > a:is(:hover, :focus-visible, .is-active) {
+  color: var(--ch-accent, #7d2f50);
+}
+
+.ch-store.ch-store-v4 .ch-mobile-nav > a:is(:hover, :focus-visible, .is-active) .ch-mobile-nav-stitch::before,
+.ch-store.ch-store-v4 .ch-mobile-nav > a:is(:hover, :focus-visible, .is-active) .ch-mobile-nav-stitch::after {
+  background: currentColor;
+  rotate: 0deg;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-theme-row {
+  gap: 14px;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-utilities {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-theme-row .ch-mobile-instagram {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid var(--ch-line);
+  border-radius: 10px;
+  color: var(--ch-ink);
+  background: var(--ch-surface-raised);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 720;
+}
+
+.ch-store.ch-store-v4 .ch-mobile-theme-row .ch-mobile-instagram:hover {
+  color: var(--ch-accent, #7d2f50);
+  border-color: color-mix(in srgb, var(--ch-accent, #963d64) 42%, var(--ch-line));
+}
+
+.ch-store.ch-store-v4 .ch-mobile-theme-row .ch-mobile-instagram span {
+  color: inherit;
+  font: inherit;
+}
+
+html[data-theme="dark"] .ch-store.ch-store-v4 .ch-brand-mark {
+  background: color-mix(in srgb, var(--ch-surface-raised) 92%, var(--ch-warm-rose));
+  box-shadow:
+    0 9px 24px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 4px color-mix(in srgb, var(--ch-accent, #bd859d) 6%, transparent);
+}
+
+html[data-theme="dark"] .ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-hook,
+html[data-theme="dark"] .ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-stitch {
+  color: var(--ch-ink-muted);
+  stroke: var(--ch-ink-muted);
+}
+
+html[data-theme="dark"] .ch-store.ch-store-v4 .ch-brand-symbol .ch-mark-stitch {
+  fill: var(--ch-ink-muted);
+  stroke: none;
+}
+
+.ch-store.ch-store-v4 .ch-footer .ch-brand-mark {
+  color: #f4bdcf;
+}
+
+.ch-store.ch-store-v4 .ch-footer .ch-brand-symbol .ch-mark-hook {
+  stroke: rgba(255, 250, 244, 0.72);
+}
+
+.ch-store.ch-store-v4 .ch-footer .ch-brand-symbol .ch-mark-ball {
+  fill: rgba(244, 189, 207, 0.1);
+}
+
+.ch-store.ch-store-v4 .ch-footer .ch-brand-symbol .ch-mark-stitch {
+  fill: rgba(255, 250, 244, 0.72);
+  stroke: none;
+}
+
+@keyframes ch-brand-pulse {
+  0% { opacity: 0; scale: 0.65; }
+  22% { opacity: 0.42; }
+  66%, 100% { opacity: 0; scale: 1.3; }
+}
+
+@keyframes ch-brand-draw {
+  from { stroke-dashoffset: 30; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 1180px) {
+  .ch-store.ch-store-v4 .ch-desktop-nav {
+    gap: 18px;
+  }
+
+  .ch-store.ch-store-v4 .ch-desktop-nav .ch-nav-index {
+    display: none;
+  }
+}
+
+@media (max-width: 1020px) {
+  .ch-store.ch-store-v4 .ch-logo {
+    max-width: calc(100% - 156px);
+  }
+
+  .ch-store.ch-store-v4 .ch-header .ch-theme-toggle {
+    display: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-mobile-theme-row {
+    display: flex;
+  }
+}
+
+@media (max-width: 620px) {
+  .ch-store.ch-store-v4 .ch-header {
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo {
+    max-width: calc(100% - 98px);
+    gap: 9px;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo .ch-brand-mark {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo .ch-brand-symbol {
+    width: 31px;
+    height: 31px;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo strong {
+    font-size: 1.13rem;
+  }
+
+  .ch-store.ch-store-v4 .ch-logo-stitches,
+  .ch-store.ch-store-v4 .ch-logo small {
+    display: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-mobile-nav {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ch-store.ch-store-v4 .ch-mobile-theme-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ch-store.ch-store-v4 .ch-mobile-utilities {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch-store.ch-store-v4 .ch-announcement-dot::after,
+  .ch-store.ch-store-v4 .ch-logo:hover .ch-mark-thread-tail,
+  .ch-store.ch-store-v4 .ch-logo:focus-visible .ch-mark-thread-tail {
+    animation: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-brand-mark,
+  .ch-store.ch-store-v4 .ch-desktop-nav .ch-nav-index,
+  .ch-store.ch-store-v4 .ch-mobile-nav-stitch::before,
+  .ch-store.ch-store-v4 .ch-mobile-nav-stitch::after {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ch-store.ch-store-v4 .ch-brand-mark,
+  .ch-store.ch-store-v4 .ch-mobile-theme-row .ch-mobile-instagram {
+    color: CanvasText;
+    border-color: CanvasText;
+    background: Canvas;
+    box-shadow: none;
+    forced-color-adjust: auto;
+  }
+
+  .ch-store.ch-store-v4 .ch-header::after,
+  .ch-store.ch-store-v4 .ch-logo-stitches,
+  .ch-store.ch-store-v4 .ch-announcement-dot::after {
+    display: none;
+  }
+}

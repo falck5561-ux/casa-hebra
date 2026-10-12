@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Osito Canela tejido a crochet</title>
+  <desc id="desc">Ilustración cálida de un osito amigurumi color canela con bufanda de salvia y una madeja de hilo.</desc>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="90" x2="1080" y2="1130" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EFE2D4"/>
+    </linearGradient>
+    <linearGradient id="fur" x1="393" y1="285" x2="789" y2="955" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CB8565"/>
+      <stop offset=".52" stop-color="#B7674B"/>
+      <stop offset="1" stop-color="#92503B"/>
+    </linearGradient>
+    <linearGradient id="muzzle" x1="505" y1="470" x2="690" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2D5BF"/>
+      <stop offset="1" stop-color="#D9B4A3"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="35%" cy="28%" r="80%">
+      <stop stop-color="#A5AD98"/>
+      <stop offset="1" stop-color="#6F7965"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#382C29" flood-opacity=".2"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <pattern id="stitches" width="34" height="28" patternUnits="userSpaceOnUse">
+      <path d="M3 15c6-8 12-8 18 0s10 7 13 2" fill="none" stroke="#F7F1E8" stroke-opacity=".2" stroke-width="4" stroke-linecap="round"/>
+    </pattern>
+    <clipPath id="bodyClip"><ellipse cx="596" cy="747" rx="245" ry="267"/></clipPath>
+    <clipPath id="headClip"><circle cx="590" cy="455" r="218"/></clipPath>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <path d="M0 930C182 841 348 863 491 965c156 111 351 99 709-55v290H0Z" fill="#D9B4A3" opacity=".32"/>
+  <circle cx="1040" cy="170" r="218" fill="#E7CFC2" opacity=".55"/>
+  <path d="M77 226c98 18 137 73 121 165-16 93-78 132-186 118" fill="none" stroke="#87917A" stroke-width="16" stroke-linecap="round" opacity=".25"/>
+  <path d="M930 90c48 70 44 126-12 168" fill="none" stroke="#B7674B" stroke-width="11" stroke-linecap="round" opacity=".32"/>
+  <ellipse cx="596" cy="1019" rx="345" ry="71" fill="#6B4A3E" opacity=".14" filter="url(#soft)"/>
+  <g filter="url(#shadow)">
+    <ellipse cx="392" cy="795" rx="105" ry="205" transform="rotate(29 392 795)" fill="url(#fur)"/>
+    <ellipse cx="800" cy="795" rx="105" ry="205" transform="rotate(-29 800 795)" fill="url(#fur)"/>
+    <ellipse cx="438" cy="934" rx="146" ry="95" transform="rotate(-8 438 934)" fill="#A75D45"/>
+    <ellipse cx="759" cy="934" rx="146" ry="95" transform="rotate(8 759 934)" fill="#A75D45"/>
+    <ellipse cx="596" cy="747" rx="245" ry="267" fill="url(#fur)"/>
+    <rect x="341" y="478" width="510" height="520" fill="url(#stitches)" clip-path="url(#bodyClip)" opacity=".75"/>
+    <circle cx="420" cy="293" r="113" fill="#A75D45"/>
+    <circle cx="760" cy="293" r="113" fill="#A75D45"/>
+    <circle cx="420" cy="293" r="61" fill="#D9B4A3"/>
+    <circle cx="760" cy="293" r="61" fill="#D9B4A3"/>
+    <circle cx="590" cy="455" r="218" fill="url(#fur)"/>
+    <rect x="370" y="225" width="450" height="450" fill="url(#stitches)" clip-path="url(#headClip)" opacity=".9"/>
+    <ellipse cx="590" cy="548" rx="130" ry="105" fill="url(#muzzle)"/>
+    <path d="M544 526c14-32 78-34 94 0 8 18-12 50-46 51-35 1-57-31-48-51Z" fill="#382C29"/>
+    <path d="M591 576c0 36-26 55-58 61M591 576c0 36 26 55 58 61" fill="none" stroke="#67463B" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="512" cy="440" rx="19" ry="25" fill="#382C29"/>
+    <ellipse cx="668" cy="440" rx="19" ry="25" fill="#382C29"/>
+    <circle cx="506" cy="433" r="6" fill="#FFFDF8"/>
+    <circle cx="662" cy="433" r="6" fill="#FFFDF8"/>
+    <ellipse cx="458" cy="516" rx="35" ry="18" fill="#A84E45" opacity=".35"/>
+    <ellipse cx="722" cy="516" rx="35" ry="18" fill="#A84E45" opacity=".35"/>
+    <path d="M385 647c118 58 288 61 420-3l13 78c-144 67-308 68-446 2Z" fill="#87917A"/>
+    <path d="M731 690c34 36 54 99 55 170l-66-18c-2-57-20-105-52-137Z" fill="#6F7965"/>
+    <path d="M732 842l52 16m-59 11 54 16" fill="none" stroke="#F7F1E8" stroke-width="7" stroke-linecap="round" opacity=".62"/>
+  </g>
+  <g transform="translate(887 829)" filter="url(#shadow)">
+    <circle cx="97" cy="99" r="101" fill="url(#ball)"/>
+    <path d="M31 48c49 19 91 12 138-9M12 88c63 24 123 18 176-8M4 128c60 21 117 21 181-3M29 169c49-2 92-12 139-31" fill="none" stroke="#DDE0D5" stroke-opacity=".48" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <path d="M976 932c-29 64-75 93-139 86-101-12-133 64-229 64" fill="none" stroke="#6F7965" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="233" cy="164" r="10" fill="#B7674B" opacity=".55"/>
+  <circle cx="270" cy="205" r="6" fill="#87917A" opacity=".65"/>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Ramo de tulipanes tejidos</title>
+  <desc id="desc">Ramo artesanal de tulipanes a crochet en tonos terracota, rosa arcilla y marfil.</desc>
+  <defs>
+    <linearGradient id="bg" x1="88" y1="43" x2="1090" y2="1165" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9F4EC"/>
+      <stop offset="1" stop-color="#E7D7C9"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="450" y1="644" x2="759" y2="1101" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AAB1A1"/>
+      <stop offset="1" stop-color="#75806D"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#D78368"/>
+      <stop offset="1" stop-color="#A64E3B"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#E9C8B9"/>
+      <stop offset="1" stop-color="#C58D79"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#E4CDBB"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#382C29" flood-opacity=".18"/>
+    </filter>
+    <filter id="blur"><feGaussianBlur stdDeviation="25"/></filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <path d="M0 0h377C260 136 188 312 161 528 105 473 52 450 0 452Z" fill="#87917A" opacity=".16"/>
+  <circle cx="1045" cy="185" r="213" fill="#D9B4A3" opacity=".42"/>
+  <path d="M919 83c-34 107 9 176 130 207" fill="none" stroke="#B7674B" stroke-width="13" stroke-linecap="round" opacity=".25"/>
+  <ellipse cx="613" cy="1053" rx="332" ry="72" fill="#513D37" opacity=".13" filter="url(#blur)"/>
+  <g filter="url(#shadow)">
+    <path d="M603 892 382 437M603 892 511 321M603 892l19-600M603 892l159-530M603 892l270-396M603 892 327 575M603 892 780 587" fill="none" stroke="#66735D" stroke-width="20" stroke-linecap="round"/>
+    <path d="M511 621c-64-93-122-116-175-101 46 72 101 111 175 101ZM641 560c66-100 133-121 197-81-61 59-125 87-197 81ZM716 660c75-81 144-93 207-52-66 47-135 65-207 52ZM501 719c-75-86-145-97-204-48 65 51 133 67 204 48ZM559 514c-14-107-58-158-130-163 17 79 60 134 130 163Z" fill="#87917A"/>
+    <path d="M511 621c-56-52-110-78-162-90M641 560c67-54 126-72 178-67M716 660c66-44 130-58 190-43M501 719c-67-45-129-58-187-39M559 514c-35-62-75-109-120-142" fill="none" stroke="#66735D" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+    <g transform="translate(271 397) rotate(-14)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#red)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#F7F1E8" stroke-opacity=".36" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(437 226) rotate(-5)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#pink)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#FFFDF8" stroke-opacity=".42" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(553 190) rotate(3)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#cream)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#B7674B" stroke-opacity=".28" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(703 285) rotate(15)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#red)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#FFFDF8" stroke-opacity=".35" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(808 420) rotate(23)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#pink)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#FFFDF8" stroke-opacity=".43" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(298 503) rotate(-24)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#cream)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#B7674B" stroke-opacity=".28" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(709 507) rotate(20)">
+      <path d="M28 85C-5 53 5 5 44 5c23 0 37 14 47 33C102 15 117 2 141 5c40 5 44 55 9 84-31 26-88 29-122-4Z" fill="url(#cream)"/>
+      <path d="M31 76c31 9 78 9 115-1M56 19c0 28 11 52 34 68m28-66c-3 27-12 49-28 66" fill="none" stroke="#B7674B" stroke-opacity=".28" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <path d="m340 677 267 174 274-184-119 404-143 48-150-54Z" fill="url(#paper)"/>
+    <path d="m340 677 267 174 12 268-150-54Z" fill="#95A08C"/>
+    <path d="m881 667-274 184 12 268 143-48Z" fill="#6D7966" opacity=".66"/>
+    <path d="M425 748c123 74 248 70 369-12" fill="none" stroke="#F7F1E8" stroke-width="7" stroke-dasharray="2 18" stroke-linecap="round" opacity=".6"/>
+    <path d="M477 897c98 41 189 38 277-10" fill="none" stroke="#D9B4A3" stroke-width="23" stroke-linecap="round"/>
+    <path d="M568 874c-28 64-36 119-23 163M663 869c33 55 41 105 23 151" fill="none" stroke="#B7674B" stroke-width="15" stroke-linecap="round"/>
+  </g>
+  <circle cx="164" cy="901" r="13" fill="#87917A" opacity=".4"/>
+  <circle cx="205" cy="948" r="7" fill="#B7674B" opacity=".5"/>
+</svg>

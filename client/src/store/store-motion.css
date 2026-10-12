@@ -1,0 +1,375 @@
+/*
+ * Casa Hebra · motion layer
+ *
+ * Microinteractions are scoped to the storefront and deliberately stay out of
+ * the reading flow. Motion communicates hierarchy and state; it never carries
+ * information that is unavailable without animation.
+ */
+
+.ch-store.ch-store-v4 .ch-motion-heading,
+.ch-store.ch-store-v4 .ch-motion-toolbar,
+.ch-store.ch-store-v4 .ch-motion-grid {
+  transform-origin: 50% 20%;
+}
+
+.ch-store.ch-store-v4 .ch-motion-grid {
+  position: relative;
+  align-items: stretch;
+}
+
+.ch-store.ch-store-v4 .ch-motion-grid > .ch-motion-card {
+  height: 100%;
+}
+
+/* Product card ----------------------------------------------------------- */
+
+.ch-store.ch-store-v4 .ch-motion-card {
+  position: relative;
+  isolation: isolate;
+  transform-origin: 50% 80%;
+  backface-visibility: hidden;
+}
+
+.ch-store.ch-store-v4 .ch-motion-card::before {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 18%;
+  width: 64%;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ch-card-accent, var(--ch-accent-surface)),
+    transparent
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition: opacity 240ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store.ch-store-v4 .ch-motion-card .ch-product-card-visual {
+  touch-action: manipulation;
+  transform-origin: 50% 60%;
+}
+
+.ch-store.ch-store-v4 .ch-motion-card .ch-product-card-visual::after {
+  left: -80%;
+  width: 32%;
+  opacity: 0.74;
+  transition: left 760ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease;
+}
+
+.ch-store.ch-store-v4 .ch-visual-invitation {
+  position: absolute;
+  z-index: 7;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 999px;
+  color: #fffaf6;
+  background: rgba(47, 33, 29, 0.88);
+  box-shadow: 0 8px 22px rgba(40, 26, 21, 0.18);
+  font-size: 0.68rem;
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 220ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store.ch-store-v4 .ch-visual-invitation svg,
+.ch-store.ch-store-v4 .ch-card-action svg {
+  flex: 0 0 auto;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store.ch-store-v4 .ch-motion-card .ch-card-action {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transform: none;
+  translate: 0 0;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 260ms ease,
+    translate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store.ch-store-v4 .ch-motion-card .ch-card-action::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 15%, rgba(255, 255, 255, 0.16) 50%, transparent 85%);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-125%);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store.ch-store-v4 .ch-motion-card :is(.ch-product-card-visual, .ch-card-action):focus-visible {
+  outline: 3px solid var(--ch-focus);
+  outline-offset: -3px;
+}
+
+.ch-store.ch-store-v4 .ch-motion-card .ch-card-action:focus-visible {
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .ch-store.ch-store-v4 .ch-motion-card:hover::before,
+  .ch-store.ch-store-v4 .ch-motion-card:focus-within::before {
+    opacity: 0.88;
+    transform: scaleX(1);
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card:hover .ch-product-cutout,
+  .ch-store.ch-store-v4 .ch-product-card-visual:focus-visible .ch-product-cutout {
+    transform: translateY(-5px) scale(1.035) rotate(0.25deg);
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card:hover .ch-product-card-visual::after,
+  .ch-store.ch-store-v4 .ch-product-card-visual:focus-visible::after {
+    left: 142%;
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card:hover .ch-visual-invitation,
+  .ch-store.ch-store-v4 .ch-product-card-visual:focus-visible .ch-visual-invitation {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card .ch-card-action:hover:not(:disabled) {
+    transform: none;
+    translate: 0 -2px;
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card .ch-card-action:hover:not(:disabled)::before {
+    transform: translateX(125%);
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card .ch-card-action:hover:not(:disabled) svg {
+    transform: translateX(3px);
+  }
+}
+
+/* Search, sorting, results ------------------------------------------------ */
+
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field,
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-sort-field {
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 240ms ease,
+    translate 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field:focus-within,
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-sort-field:focus-within {
+  border-color: color-mix(in srgb, var(--ch-accent-surface) 76%, var(--ch-line));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--ch-accent-surface) 13%, transparent),
+    0 13px 30px color-mix(in srgb, var(--ch-ink) 7%, transparent);
+  translate: 0 -1px;
+}
+
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field > button {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  min-height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field > button:hover {
+  color: var(--ch-ink);
+  background: color-mix(in srgb, var(--ch-accent-surface) 13%, var(--ch-surface-muted));
+}
+
+.ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field > button:focus-visible {
+  outline: 3px solid var(--ch-focus);
+  outline-offset: 2px;
+}
+
+.ch-store.ch-store-v4 .ch-result-count {
+  overflow: hidden;
+}
+
+.ch-store.ch-store-v4 .ch-result-count > span {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Animated filter indicator --------------------------------------------- */
+
+.ch-store.ch-store-v4 .ch-category-scroll .ch-motion-filter {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-snap-align: start;
+  transform-origin: center;
+}
+
+.ch-store.ch-store-v4 .ch-category-scroll .ch-motion-filter.is-active {
+  color: var(--ch-on-accent, #ffffff);
+  border-color: transparent;
+  background: var(--ch-surface);
+  box-shadow: 0 9px 20px color-mix(in srgb, var(--ch-accent-surface) 20%, transparent);
+}
+
+.ch-store.ch-store-v4 .ch-filter-active-bg {
+  position: absolute;
+  z-index: -1;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--ch-accent-surface, #963d64);
+  pointer-events: none;
+}
+
+.ch-store.ch-store-v4 .ch-filter-label {
+  position: relative;
+  z-index: 1;
+}
+
+.ch-store.ch-store-v4 .ch-category-scroll .ch-motion-filter:focus-visible {
+  outline: 3px solid var(--ch-focus);
+  outline-offset: 3px;
+}
+
+.ch-store.ch-store-v4 .ch-category-scroll {
+  scroll-padding-inline: 4px;
+  scroll-snap-type: inline proximity;
+}
+
+/* Catalogue state changes ------------------------------------------------ */
+
+.ch-store.ch-store-v4 .ch-catalogue-stage {
+  position: relative;
+  min-height: 280px;
+}
+
+.ch-store.ch-store-v4 .ch-catalogue-stage > .ch-state-card {
+  width: 100%;
+}
+
+.ch-store.ch-store-v4 .ch-skeleton-card {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ch-store.ch-store-v4 .ch-skeleton-card .ch-skeleton {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ch-store.ch-store-v4 .ch-skeleton-card .ch-skeleton::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      color-mix(in srgb, var(--ch-surface-raised) 82%, white) 49%,
+      transparent 78%
+    );
+    content: "";
+    transform: translateX(-120%);
+    animation: ch-motion-skeleton-pass 1.65s ease-in-out infinite;
+  }
+}
+
+@keyframes ch-motion-skeleton-pass {
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Mobile keeps the photograph completely unobstructed. */
+@media (max-width: 700px), (hover: none) {
+  .ch-store.ch-store-v4 .ch-visual-invitation {
+    display: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-catalogue-stage {
+    min-height: 220px;
+  }
+}
+
+/* Motion is fully optional, including CSS effects inherited by the cards. */
+@media (prefers-reduced-motion: reduce) {
+  .ch-store.ch-store-v4 .ch-motion-heading,
+  .ch-store.ch-store-v4 .ch-motion-toolbar,
+  .ch-store.ch-store-v4 .ch-motion-grid,
+  .ch-store.ch-store-v4 .ch-motion-card,
+  .ch-store.ch-store-v4 .ch-motion-card:hover,
+  .ch-store.ch-store-v4 .ch-motion-card *,
+  .ch-store.ch-store-v4 .ch-motion-toolbar *,
+  .ch-store.ch-store-v4 .ch-motion-filter,
+  .ch-store.ch-store-v4 .ch-filter-active-bg {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card,
+  .ch-store.ch-store-v4 .ch-motion-card:hover,
+  .ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field:focus-within,
+  .ch-store.ch-store-v4 .ch-motion-toolbar .ch-sort-field:focus-within {
+    translate: 0 0;
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card .ch-product-cutout,
+  .ch-store.ch-store-v4 .ch-motion-card:hover .ch-product-cutout,
+  .ch-store.ch-store-v4 .ch-motion-card .ch-card-action,
+  .ch-store.ch-store-v4 .ch-motion-card .ch-card-action:hover:not(:disabled) {
+    transform: none !important;
+  }
+
+  .ch-store.ch-store-v4 .ch-motion-card::before,
+  .ch-store.ch-store-v4 .ch-motion-card .ch-product-card-visual::after,
+  .ch-store.ch-store-v4 .ch-visual-invitation {
+    display: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .ch-store.ch-store-v4 .ch-motion-card,
+  .ch-store.ch-store-v4 .ch-motion-toolbar .ch-search-field,
+  .ch-store.ch-store-v4 .ch-motion-toolbar .ch-sort-field,
+  .ch-store.ch-store-v4 .ch-category-scroll .ch-motion-filter {
+    border-width: 2px;
+  }
+}
+
+@media (forced-colors: active) {
+  .ch-store.ch-store-v4 .ch-motion-card::before,
+  .ch-store.ch-store-v4 .ch-motion-card .ch-product-card-visual::after,
+  .ch-store.ch-store-v4 .ch-visual-invitation,
+  .ch-store.ch-store-v4 .ch-filter-active-bg {
+    display: none;
+  }
+
+  .ch-store.ch-store-v4 .ch-category-scroll .ch-motion-filter.is-active {
+    color: HighlightText;
+    border-color: Highlight;
+    background: Highlight;
+  }
+}

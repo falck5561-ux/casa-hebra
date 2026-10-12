@@ -1,0 +1,11 @@
+node_modules/
+client/dist/
+server/data/
+server/uploads/
+.env
+.DS_Store
+*.log
+*.zip
+release/
+upload/
+generated_images/
