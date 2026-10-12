@@ -1,17 +1,14 @@
-# Casa Hebra en Vercel
+# Casa Hebra en Vercel Services
 
-Esta version esta preparada para un solo proyecto de Vercel:
+Este repositorio usa un solo proyecto de Vercel con dos services:
 
-- `client/`: Vite/React, compilado a `client/dist`.
-- `api/[...path].js`: Express ejecutado como Vercel Function.
-- `/api/*`: reescrito a la funcion Express.
-- `/admin` y las rutas de la tienda: fallback SPA a `index.html`.
-- Supabase Database: persistencia de catalogo, solicitudes, configuracion y administrador.
-- Supabase Storage: fotografias.
+- `client`: Vite/React, publico en `/*`.
+- `server`: Express, publico solamente mediante `/api/*`.
+- No hay bindings internos: el navegador llama a `/api/...` en el mismo dominio.
 
-## Variables obligatorias en Vercel
+## Variables en Vercel
 
-Configuralas en Project Settings > Environment Variables para Production, Preview y Development si deseas probar todos los entornos:
+Agrega en Project Settings > Environment Variables:
 
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
@@ -22,20 +19,6 @@ Configuralas en Project Settings > Environment Variables para Production, Previe
 - `MAX_INQUIRIES=1000`
 - `TRUST_PROXY=true`
 
+`PUBLIC_ORIGIN` es opcional en Vercel: el backend usa automaticamente la URL que Vercel inyecta. Cuando conectes un dominio propio, se recomienda fijarlo explicitamente a `https://tu-dominio`.
+
 No subas `server/.env` a GitHub.
-
-`PUBLIC_ORIGIN` es opcional en Vercel. Si luego agregas un dominio propio, puedes establecerlo a su origen HTTPS, por ejemplo `https://casahebra.mx`.
-
-`SETUP_TOKEN` solo es necesario si la base de datos no tiene administrador. Si ya migraste tu administrador, no hace falta para el arranque.
-
-## Importar
-
-Importa el repositorio desde la raiz. Vercel leera `vercel.json`; no importes `client` y `server` como proyectos separados.
-
-## Prueba posterior
-
-1. Abre `/api/health`.
-2. Abre `/` y confirma catalogo e imagenes.
-3. Abre `/admin` e inicia sesion.
-4. Edita un producto.
-5. Sube una imagen y confirma que aparece en Supabase Storage.

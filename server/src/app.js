@@ -188,7 +188,6 @@ function uploadRoute(uploadDirectory, store, cloudConfig) {
 }
 
 async function createApp(options = {}) {
-  const serverless = options.serverless !== undefined ? Boolean(options.serverless) : Boolean(process.env.VERCEL);
   const production =
     options.production !== undefined
       ? Boolean(options.production)
@@ -196,8 +195,8 @@ async function createApp(options = {}) {
   const serverRoot = path.join(__dirname, "..");
   const dataDir = options.dataDir
     ? path.resolve(options.dataDir)
-    : serverless
-      ? path.join("/tmp", "casa-hebra")
+    : process.env.VERCEL
+      ? path.join(require("node:os").tmpdir(), "casa-hebra")
       : process.env.DATA_DIR
         ? path.resolve(serverRoot, process.env.DATA_DIR)
         : path.join(serverRoot, "data");
@@ -215,13 +214,18 @@ async function createApp(options = {}) {
       ? await new SupabaseStore(dbConfig).init()
       : await new JsonStore(dataDir).init());
   const initialData = store.readSections(["auth"]);
+  const vercelOrigin = process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "";
   const explicitOrigins = validatePublicOrigins(
     options.allowedOrigins !== undefined
       ? options.allowedOrigins
-      : process.env.PUBLIC_ORIGIN,
+      : process.env.PUBLIC_ORIGIN || vercelOrigin,
     { production },
   );
-  if (!serverless) assertProductionOrigins(production, explicitOrigins);
+  assertProductionOrigins(production, explicitOrigins);
   const setupPolicy = resolveSetupPolicy({
     production,
     hasOwner: Boolean(initialData.auth.owner),
@@ -241,9 +245,6 @@ async function createApp(options = {}) {
         : process.env.MAX_INQUIRIES,
   });
   await pruneStoredInquiries(store, inquiryPolicy);
-  if (serverless && (!dbConfig.enabled || !cloudConfig.configured)) {
-    throw new Error("Vercel requiere SUPABASE_DATABASE_ENABLED=true y Supabase Storage configurado.");
-  }
   await fs.promises.mkdir(uploadDirectory, { recursive: true, mode: 0o700 });
   await cleanupOrphanUploads(
     uploadDirectory,
@@ -257,7 +258,7 @@ async function createApp(options = {}) {
       }),
     );
   });
-  const uploadCleanupTimer = serverless ? null : setInterval(() => {
+  const uploadCleanupTimer = setInterval(() => {
     cleanupOrphanUploads(
       uploadDirectory,
       store.readSections(["products", "inquiries"]),
@@ -271,8 +272,8 @@ async function createApp(options = {}) {
       );
     });
   }, 6 * 60 * 60 * 1000);
-  if (uploadCleanupTimer) uploadCleanupTimer.unref();
-  const inquiryCleanupTimer = serverless ? null : setInterval(() => {
+  uploadCleanupTimer.unref();
+  const inquiryCleanupTimer = setInterval(() => {
     pruneStoredInquiries(store, inquiryPolicy).catch((error) => {
       console.error(
         JSON.stringify({
@@ -283,7 +284,7 @@ async function createApp(options = {}) {
       );
     });
   }, 24 * 60 * 60 * 1000);
-  if (inquiryCleanupTimer) inquiryCleanupTimer.unref();
+  inquiryCleanupTimer.unref();
 
   const app = express();
   app.disable("x-powered-by");
@@ -316,16 +317,9 @@ async function createApp(options = {}) {
     sameOrigin({
       allowedOrigins,
       requireOrigin: production,
-      allowInferredOrigin: serverless || explicitOrigins.length === 0,
+      allowInferredOrigin: explicitOrigins.length === 0,
     }),
   );
-
-  if (typeof store.refresh === "function") {
-    app.use(asyncRoute(async (req, res, next) => {
-      await store.refresh();
-      next();
-    }));
-  }
 
   const setupLimiter = rateLimit({
     keyPrefix: "setup",
@@ -965,7 +959,7 @@ async function createApp(options = {}) {
     next(new HttpError(404, "API_NOT_FOUND", "Ruta de API no encontrada.")),
   );
 
-  const hasClient = !serverless && fs.existsSync(path.join(clientDist, "index.html"));
+  const hasClient = fs.existsSync(path.join(clientDist, "index.html"));
   if (hasClient) {
     app.use(
       express.static(clientDist, {
@@ -1056,7 +1050,6 @@ async function createApp(options = {}) {
       uploadDirectory,
       inquiryRetentionDays: inquiryPolicy.retentionDays,
       maxInquiries: inquiryPolicy.maxInquiries,
-      serverless,
     },
   };
 }
