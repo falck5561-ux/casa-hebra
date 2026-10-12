@@ -383,25 +383,49 @@ export function InquiryDrawer({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="ch-overlay ch-drawer-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) onClose();
-          }}
-        >
-          <motion.aside
-            className="ch-inquiry-drawer"
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="bag-title"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 320 }}
-          >
+  className="ch-overlay ch-drawer-overlay"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{
+    duration: 0.32,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  onMouseDown={(event) => {
+    if (event.target === event.currentTarget) onClose();
+  }}
+>
+  <motion.aside
+    className="ch-inquiry-drawer"
+    ref={panelRef}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bag-title"
+    initial={{
+      x: "100%",
+      opacity: 0.82,
+    }}
+    animate={{
+      x: 0,
+      opacity: 1,
+    }}
+    exit={{
+      x: "100%",
+      opacity: 0.72,
+    }}
+    transition={{
+      x: {
+        type: "spring",
+        stiffness: 145,
+        damping: 24,
+        mass: 0.95,
+      },
+      opacity: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }}
+  >
             <header className="ch-drawer-header">
               <div>
                 <p className="ch-eyebrow"><ShoppingBag size={14} /> Tu selección</p>

@@ -47,51 +47,238 @@ export function YarnMark({ compact = false }) {
   );
 }
 
-export function Header({ settings, bagCount, onOpenBag, navigationReady = false }) {
+export function Header({
+  settings,
+  bagCount,
+  onOpenBag,
+  navigationReady = false,
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [navigatingTo, setNavigatingTo] = useState("");
+
   const menuButtonRef = useRef(null);
+  const navigationTimerRef = useRef(null);
+
   const prefersReducedMotion = useReducedMotion();
   const instagram = instagramUrl(settings.instagram);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
+  const getHeaderOffset = () => {
+    const header = document.querySelector(".ch-header");
+
+    if (!header) {
+      return 16;
+    }
+
+    return header.getBoundingClientRect().height + 16;
+  };
+
+  const scrollToSection = (href) => {
+    const sectionId = href.replace("#", "");
+    const section = document.getElementById(sectionId);
+
+    if (!section) {
+      console.warn(`No se encontró la sección #${sectionId}`);
+      setNavigatingTo("");
+      return;
+    }
+
+    const headerOffset = getHeaderOffset();
+    const sectionTop =
+      section.getBoundingClientRect().top +
+      window.scrollY -
+      headerOffset;
+
+    window.scrollTo({
+      top: Math.max(0, sectionTop),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+
+    setActiveSection(sectionId);
+    setNavigatingTo("");
+
+    if (window.location.hash !== href) {
+      window.history.replaceState(null, "", href);
+    }
+  };
+
+  const navigateToSection = (event, href) => {
+    event.preventDefault();
+
+    const sectionId = href.replace("#", "");
+    const section = document.getElementById(sectionId);
+
+    if (!section) {
+      console.warn(`No se encontró la sección #${sectionId}`);
+      return;
+    }
+
+    setActiveSection(sectionId);
+    setNavigatingTo(sectionId);
+
+    if (navigationTimerRef.current) {
+      window.clearTimeout(navigationTimerRef.current);
+      navigationTimerRef.current = null;
+    }
+
+    /*
+     * En móvil cerramos primero el menú.
+     * Después hacemos el desplazamiento para que la animación
+     * del menú y el scroll no compitan entre sí.
+     */
+    if (menuOpen) {
+      closeMenu();
+
+      navigationTimerRef.current = window.setTimeout(
+        () => {
+          scrollToSection(href);
+        },
+        prefersReducedMotion ? 0 : 230,
+      );
+
+      return;
+    }
+
+    scrollToSection(href);
+  };
+
+  const navigateHome = (event) => {
+    event.preventDefault();
+
+    if (navigationTimerRef.current) {
+      window.clearTimeout(navigationTimerRef.current);
+      navigationTimerRef.current = null;
+    }
+
+    closeMenu();
+    setActiveSection("");
+    setNavigatingTo("");
+
+    if (window.location.hash) {
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}`,
+      );
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
+
+  const openBag = () => {
+    if (navigationTimerRef.current) {
+      window.clearTimeout(navigationTimerRef.current);
+      navigationTimerRef.current = null;
+    }
+
+    closeMenu();
+    setNavigatingTo("");
+    onOpenBag();
+  };
+
+  /*
+   * Escape cierra el menú móvil.
+   */
   useEffect(() => {
-    if (!menuOpen) return undefined;
+    if (!menuOpen) {
+      return undefined;
+    }
+
     const closeOnEscape = (event) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-        window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+      if (event.key !== "Escape") {
+        return;
       }
+
+      setMenuOpen(false);
+
+      window.requestAnimationFrame(() => {
+        menuButtonRef.current?.focus();
+      });
     };
+
     document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+    };
   }, [menuOpen]);
 
+  /*
+   * Limpieza del temporizador utilizado al navegar desde móvil.
+   */
   useEffect(() => {
-    const sections = NAV_LINKS.map(([, href]) => document.querySelector(href)).filter(Boolean);
-    if (!sections.length || typeof IntersectionObserver === "undefined") return undefined;
+    return () => {
+      if (navigationTimerRef.current) {
+        window.clearTimeout(navigationTimerRef.current);
+      }
+    };
+  }, []);
+
+  /*
+   * Detecta automáticamente qué sección está viendo el usuario.
+   */
+  useEffect(() => {
+    const sections = NAV_LINKS.map(([, href]) =>
+      document.querySelector(href),
+    ).filter(Boolean);
+
+    if (
+      !sections.length ||
+      typeof IntersectionObserver === "undefined"
+    ) {
+      return undefined;
+    }
 
     const hashSection = window.location.hash.slice(1);
-    if (sections.some((section) => section.id === hashSection)) setActiveSection(hashSection);
+
+    if (sections.some((section) => section.id === hashSection)) {
+      setActiveSection(hashSection);
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
+        /*
+         * Mientras estamos desplazándonos por un clic del menú,
+         * dejamos que esa sección permanezca activa.
+         */
+        if (navigatingTo) {
+          return;
+        }
+
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort(
             (a, b) =>
               b.intersectionRatio - a.intersectionRatio ||
-              a.boundingClientRect.top - b.boundingClientRect.top,
+              a.boundingClientRect.top -
+                b.boundingClientRect.top,
           );
-        if (visible[0]?.target?.id) setActiveSection(visible[0].target.id);
+
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
       },
-      { rootMargin: "-24% 0px -62% 0px", threshold: [0, 0.15, 0.4] },
+      {
+        rootMargin: "-22% 0px -62% 0px",
+        threshold: [0, 0.12, 0.3, 0.5],
+      },
     );
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [navigationReady]);
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [navigationReady, navigatingTo]);
 
   return (
     <>
@@ -101,49 +288,80 @@ export function Header({ settings, bagCount, onOpenBag, navigationReady = false 
           <span>{settings.announcement}</span>
         </div>
       ) : null}
+
       <header className="ch-header">
         <a
           className="ch-logo"
           href="#inicio"
           aria-label={`${settings.storeName}, inicio`}
-          onClick={() => {
-            closeMenu();
-            setActiveSection("");
-          }}
+          onClick={navigateHome}
         >
-          <YarnMark />
+          <span className="ch-brand-image-wrap" aria-hidden="true">
+          <img
+           className="ch-brand-image"
+           src="/casa-hebra-icon.png"
+           alt=""
+           width="56"
+           height="56"
+          />
+          </span>
+
           <span className="ch-logo-copy">
             <span className="ch-logo-name-row">
               <strong>{settings.storeName}</strong>
-              <span className="ch-logo-stitches" aria-hidden="true">
+
+              <span
+                className="ch-logo-stitches"
+                aria-hidden="true"
+              >
                 <i />
                 <i />
                 <i />
               </span>
             </span>
+
             <small>{settings.tagline}</small>
           </span>
         </a>
 
-        <nav className="ch-desktop-nav" aria-label="Navegación principal">
-          {NAV_LINKS.map(([label, href], index) => (
-            <a
-              key={href}
-              href={href}
-              className={activeSection === href.slice(1) ? "is-active" : undefined}
-              aria-current={activeSection === href.slice(1) ? "location" : undefined}
-              onClick={() => setActiveSection(href.slice(1))}
-            >
-              <span className="ch-nav-index" aria-hidden="true">
-                0{index + 1}
-              </span>
-              <span className="ch-nav-label">{label}</span>
-            </a>
-          ))}
+        {/* Navegación de escritorio */}
+        <nav
+          className="ch-desktop-nav"
+          aria-label="Navegación principal"
+        >
+          {NAV_LINKS.map(([label, href], index) => {
+            const sectionId = href.slice(1);
+            const active = activeSection === sectionId;
+
+            return (
+              <a
+                key={href}
+                href={href}
+                className={active ? "is-active" : undefined}
+                aria-current={active ? "location" : undefined}
+                onClick={(event) =>
+                  navigateToSection(event, href)
+                }
+              >
+                <span
+                  className="ch-nav-index"
+                  aria-hidden="true"
+                >
+                  0{index + 1}
+                </span>
+
+                <span className="ch-nav-label">
+                  {label}
+                </span>
+              </a>
+            );
+          })}
         </nav>
 
+        {/* Acciones */}
         <div className="ch-header-actions">
           <ThemeToggle className="ch-theme-toggle" />
+
           {instagram ? (
             <a
               className="ch-icon-button ch-desktop-social"
@@ -155,73 +373,252 @@ export function Header({ settings, bagCount, onOpenBag, navigationReady = false 
               <Instagram size={19} />
             </a>
           ) : null}
+
           <button
             className="ch-bag-button"
             type="button"
-            onClick={() => {
-              setMenuOpen(false);
-              onOpenBag();
-            }}
+            onClick={openBag}
           >
             <ShoppingBag size={19} />
-            <span className="ch-bag-label">Mi selección</span>
-            <span className="ch-bag-count" aria-label={`${bagCount} piezas seleccionadas`}>
+
+            <span className="ch-bag-label">
+              Mi selección
+            </span>
+
+            <span
+              className="ch-bag-count"
+              aria-label={`${bagCount} piezas seleccionadas`}
+            >
               {bagCount}
             </span>
           </button>
+
           <button
             className="ch-icon-button ch-menu-button"
             ref={menuButtonRef}
             type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            onClick={() =>
+              setMenuOpen((current) => !current)
+            }
+            aria-label={
+              menuOpen ? "Cerrar menú" : "Abrir menú"
+            }
             aria-expanded={menuOpen}
             aria-controls="casa-hebra-mobile-nav"
           >
-            {menuOpen ? <X size={21} /> : <Menu size={21} />}
+            <AnimatePresence
+              initial={false}
+              mode="wait"
+            >
+              <motion.span
+                key={menuOpen ? "close" : "menu"}
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        rotate: -20,
+                        scale: 0.82,
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  rotate: 0,
+                  scale: 1,
+                }}
+                exit={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        opacity: 0,
+                        rotate: 20,
+                        scale: 0.82,
+                      }
+                }
+                transition={{
+                  duration: prefersReducedMotion
+                    ? 0
+                    : 0.16,
+                }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {menuOpen ? (
+                  <X size={21} />
+                ) : (
+                  <Menu size={21} />
+                )}
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
+
+        {/* Menú móvil */}
         <AnimatePresence>
           {menuOpen ? (
             <motion.nav
               id="casa-hebra-mobile-nav"
               className="ch-mobile-nav"
               aria-label="Navegación móvil"
-              initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={
+                prefersReducedMotion
+                  ? false
+                  : {
+                      opacity: 0,
+                      height: 0,
+                      y: -8,
+                    }
+              }
+              animate={{
+                opacity: 1,
+                height: "auto",
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+                y: -6,
+              }}
               transition={
                 prefersReducedMotion
-                  ? { duration: 0 }
-                  : { duration: 0.24, ease: "easeOut" }
+                  ? {
+                      duration: 0,
+                    }
+                  : {
+                      duration: 0.26,
+                      ease: [0.22, 1, 0.36, 1],
+                    }
               }
             >
-              <p className="ch-mobile-nav-heading">
-                Explora Casa Hebra <span aria-hidden="true" />
-              </p>
-              {NAV_LINKS.map(([label, href], index) => (
-                <motion.a
-                  key={href}
-                  href={href}
-                  className={activeSection === href.slice(1) ? "is-active" : undefined}
-                  aria-current={activeSection === href.slice(1) ? "location" : undefined}
-                  onClick={() => {
-                    setActiveSection(href.slice(1));
-                    closeMenu();
-                  }}
-                  initial={prefersReducedMotion ? false : { opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={prefersReducedMotion ? { duration: 0 } : { delay: index * 0.035 }}
-                >
-                  <span className="ch-mobile-nav-index" aria-hidden="true">
-                    0{index + 1}
-                  </span>
-                  <span className="ch-mobile-nav-label">{label}</span>
-                  <span className="ch-mobile-nav-stitch" aria-hidden="true" />
-                </motion.a>
-              ))}
-              <div className="ch-mobile-theme-row">
+              <motion.p
+                className="ch-mobile-nav-heading"
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: -4,
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: prefersReducedMotion
+                    ? 0
+                    : 0.2,
+                }}
+              >
+                Explora Casa Hebra
+                <span aria-hidden="true" />
+              </motion.p>
+
+              {NAV_LINKS.map(
+                ([label, href], index) => {
+                  const sectionId = href.slice(1);
+                  const active =
+                    activeSection === sectionId;
+
+                  return (
+                    <motion.a
+                      key={href}
+                      href={href}
+                      className={
+                        active ? "is-active" : undefined
+                      }
+                      aria-current={
+                        active ? "location" : undefined
+                      }
+                      onClick={(event) =>
+                        navigateToSection(event, href)
+                      }
+                      initial={
+                        prefersReducedMotion
+                          ? false
+                          : {
+                              opacity: 0,
+                              x: -16,
+                            }
+                      }
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={
+                        prefersReducedMotion
+                          ? {
+                              duration: 0,
+                            }
+                          : {
+                              duration: 0.22,
+                              delay: 0.045 + index * 0.045,
+                              ease: [0.22, 1, 0.36, 1],
+                            }
+                      }
+                      whileTap={
+                        prefersReducedMotion
+                          ? undefined
+                          : {
+                              scale: 0.985,
+                            }
+                      }
+                    >
+                      <span
+                        className="ch-mobile-nav-index"
+                        aria-hidden="true"
+                      >
+                        0{index + 1}
+                      </span>
+
+                      <span className="ch-mobile-nav-label">
+                        {label}
+                      </span>
+
+                      <motion.span
+                        className="ch-mobile-nav-stitch"
+                        aria-hidden="true"
+                        animate={{
+                          scaleX: active ? 1 : 0.55,
+                          opacity: active ? 1 : 0.55,
+                        }}
+                        transition={{
+                          duration: 0.2,
+                        }}
+                      />
+                    </motion.a>
+                  );
+                },
+              )}
+
+              <motion.div
+                className="ch-mobile-theme-row"
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 8,
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: prefersReducedMotion
+                    ? 0
+                    : 0.22,
+                  delay: prefersReducedMotion
+                    ? 0
+                    : 0.18,
+                }}
+              >
                 <span>Apariencia</span>
+
                 <div className="ch-mobile-utilities">
                   {instagram ? (
                     <a
@@ -231,21 +628,49 @@ export function Header({ settings, bagCount, onOpenBag, navigationReady = false 
                       rel="noreferrer"
                       aria-label="Abrir Instagram de Casa Hebra"
                     >
-                      <Instagram size={17} /> <span>Instagram</span>
+                      <Instagram size={17} />
+                      <span>Instagram</span>
                     </a>
                   ) : null}
+
                   <ThemeToggle className="ch-mobile-theme-toggle" />
                 </div>
-              </div>
-              <button
+              </motion.div>
+
+              <motion.button
                 type="button"
-                onClick={() => {
-                  closeMenu();
-                  onOpenBag();
+                onClick={openBag}
+                initial={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 10,
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  y: 0,
                 }}
+                transition={{
+                  duration: prefersReducedMotion
+                    ? 0
+                    : 0.22,
+                  delay: prefersReducedMotion
+                    ? 0
+                    : 0.21,
+                }}
+                whileTap={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        scale: 0.985,
+                      }
+                }
               >
-                <MessageCircle size={18} /> Consultar mi selección
-              </button>
+                <MessageCircle size={18} />
+                Consultar mi selección
+              </motion.button>
             </motion.nav>
           ) : null}
         </AnimatePresence>

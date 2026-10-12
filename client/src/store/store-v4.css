@@ -3225,3 +3225,72 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     background: Highlight;
   }
 }
+
+/* ==========================================================================
+   Isotipo Casa Hebra
+   ========================================================================== */
+
+.ch-store-v4 .ch-brand-image-wrap {
+  position: relative;
+
+  display: inline-flex;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+}
+
+.ch-store-v4 .ch-brand-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: translateZ(0);
+
+  filter: drop-shadow(
+    0 5px 9px
+      color-mix(in srgb, var(--ch-ink) 14%, transparent)
+  );
+
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.28s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ch-store-v4 .ch-logo:hover .ch-brand-image {
+    transform:
+      translateY(-2px)
+      rotate(-2deg)
+      scale(1.055);
+
+    filter: drop-shadow(
+      0 8px 13px
+        color-mix(in srgb, var(--ch-ink) 18%, transparent)
+    );
+  }
+}
+
+@media (max-width: 760px) {
+  .ch-store-v4 .ch-brand-image-wrap {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ch-store-v4 .ch-brand-image-wrap {
+    width: 45px;
+    height: 45px;
+    flex-basis: 45px;
+  }
+}
