@@ -526,7 +526,7 @@ export function InquiryDrawer({
                     aria-describedby={errorField === "privacyAccepted" ? errorId : undefined}
                   />
                   <span>
-                    Acepto que mi nombre, selección y nota se guarden hasta {retentionDays} días para atender y organizar esta solicitud.
+                    Acepto compartir estos datos para que Casa Hebra pueda atender mi solicitud.
                   </span>
                 </label>
 
