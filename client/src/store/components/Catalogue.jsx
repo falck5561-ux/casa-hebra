@@ -1,12 +1,19 @@
 import {
   ArrowDownUp,
   ArrowRight,
+  Check,
+  ChevronDown,
   Search,
   SlidersHorizontal,
   Sparkles,
 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { forwardRef } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   categoryName,
   formatMoney,
@@ -17,6 +24,29 @@ import { ProductVisual } from "./Brand";
 import "../store-motion.css";
 
 const PRODUCT_TONES = ["#9f3f64", "#39766d", "#806819", "#705995", "#426d88"];
+
+const SORT_OPTIONS = [
+  {
+    value: "featured",
+    label: "Recomendados",
+  },
+  {
+    value: "newest",
+    label: "Más recientes",
+  },
+  {
+    value: "price-asc",
+    label: "Precio: menor a mayor",
+  },
+  {
+    value: "price-desc",
+    label: "Precio: mayor a menor",
+  },
+  {
+    value: "name",
+    label: "Nombre",
+  },
+];
 
 function productTone(product) {
   const source = String(product.categoryId || product.name || "Casa Hebra");
@@ -216,6 +246,137 @@ export function Featured({ products, categories, currency, loading, onOpen }) {
   );
 }
 
+function CatalogueSort({ value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const selectedOption =
+    SORT_OPTIONS.find((option) => option.value === value) ||
+    SORT_OPTIONS[0];
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    function handlePointerDown(event) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
+  function selectOption(option) {
+    onChange(option.value);
+    setOpen(false);
+
+    window.requestAnimationFrame(() => {
+      buttonRef.current?.focus();
+    });
+  }
+
+  return (
+    <div
+      className={`ch-sort-menu ${open ? "is-open" : ""}`}
+      ref={containerRef}
+    >
+      <button
+        ref={buttonRef}
+        className="ch-sort-trigger"
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls="catalogue-sort-options"
+        onClick={() => setOpen((current) => !current)}
+      >
+        <ArrowDownUp
+          className="ch-sort-trigger-icon"
+          size={17}
+          aria-hidden="true"
+        />
+
+        <span>{selectedOption.label}</span>
+
+        <ChevronDown
+          className="ch-sort-chevron"
+          size={18}
+          aria-hidden="true"
+        />
+      </button>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            id="catalogue-sort-options"
+            className="ch-sort-options"
+            role="listbox"
+            aria-label="Ordenar catálogo"
+            initial={{
+              opacity: 0,
+              y: -6,
+              scale: 0.98,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: -5,
+              scale: 0.98,
+            }}
+            transition={{
+              duration: 0.16,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {SORT_OPTIONS.map((option) => {
+              const selected = option.value === value;
+
+              return (
+                <button
+                  key={option.value}
+                  className={`ch-sort-option ${
+                    selected ? "is-selected" : ""
+                  }`}
+                  type="button"
+                  role="option"
+                  aria-selected={selected}
+                  onClick={() => selectOption(option)}
+                >
+                  <span className="ch-sort-check" aria-hidden="true">
+                    {selected ? <Check size={16} /> : null}
+                  </span>
+
+                  <span>{option.label}</span>
+                </button>
+              );
+            })}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function Catalogue({
   categories,
   products,
@@ -338,17 +499,10 @@ export function Catalogue({
             ) : null}
           </AnimatePresence>
         </label>
-        <label className="ch-sort-field">
-          <ArrowDownUp size={17} aria-hidden="true" />
-          <span className="sr-only">Ordenar catálogo</span>
-          <select value={sort} onChange={(event) => onSort(event.target.value)}>
-            <option value="featured">Recomendados</option>
-            <option value="newest">Más recientes</option>
-            <option value="price-asc">Precio: menor a mayor</option>
-            <option value="price-desc">Precio: mayor a menor</option>
-            <option value="name">Nombre</option>
-          </select>
-        </label>
+        <CatalogueSort
+          value={sort}
+          onChange={onSort}
+        />
       </motion.div>
 
       <div className="ch-category-scroll" role="group" aria-label="Filtrar por categoría">

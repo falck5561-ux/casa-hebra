@@ -784,6 +784,260 @@ html[data-theme="dark"] .ch-store-v4 .ch-product-category {
 
 /* Catálogo ---------------------------------------------------------------- */
 
+/* Selector personalizado de orden ---------------------------------------- */
+
+.ch-store-v4 .ch-sort-menu {
+  position: relative;
+  z-index: 40;
+  width: 230px;
+  min-width: 230px;
+}
+
+.ch-store-v4 .ch-sort-trigger {
+  display: grid;
+  width: 100%;
+  min-height: 56px;
+  grid-template-columns: 20px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid var(--ch-line);
+  border-radius: 15px;
+  color: var(--ch-ink);
+  background: var(--ch-surface);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--ch-ink) 4%, transparent);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ch-store-v4 .ch-sort-trigger:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--ch-accent, #7d2f50) 42%,
+    var(--ch-line)
+  );
+  background: var(--ch-surface-raised);
+}
+
+.ch-store-v4 .ch-sort-menu.is-open .ch-sort-trigger {
+  border-color: var(--ch-accent, #7d2f50);
+  box-shadow:
+    0 0 0 3px
+      color-mix(
+        in srgb,
+        var(--ch-accent, #7d2f50) 12%,
+        transparent
+      ),
+    0 10px 26px
+      color-mix(
+        in srgb,
+        var(--ch-ink) 7%,
+        transparent
+      );
+}
+
+.ch-store-v4 .ch-sort-trigger:focus-visible {
+  outline: 3px solid var(--ch-focus);
+  outline-offset: 3px;
+}
+
+.ch-store-v4 .ch-sort-trigger-icon {
+  color: var(--ch-accent, #7d2f50);
+}
+
+.ch-store-v4 .ch-sort-trigger > span {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ch-ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ch-store-v4 .ch-sort-chevron {
+  color: var(--ch-ink-muted);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ch-store-v4 .ch-sort-menu.is-open .ch-sort-chevron {
+  transform: rotate(180deg);
+}
+
+/* Menú desplegable */
+
+.ch-store-v4 .ch-sort-options {
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 8px);
+  right: 0;
+
+  display: grid;
+  width: max(100%, 250px);
+  gap: 4px;
+
+  padding: 7px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--ch-line);
+  border-radius: 16px;
+
+  color: var(--ch-ink);
+  background: var(--ch-surface-raised);
+
+  box-shadow:
+    0 24px 55px
+      color-mix(
+        in srgb,
+        var(--ch-ink) 16%,
+        transparent
+      );
+
+  transform-origin: top right;
+}
+
+/* Opciones */
+
+.ch-store-v4 .ch-sort-option {
+  display: grid;
+  width: 100%;
+  min-height: 45px;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+
+  padding: 9px 11px;
+
+  border: 0;
+  border-radius: 11px;
+
+  color: var(--ch-ink-muted);
+  background: transparent;
+
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color 0.16s ease,
+    background-color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.ch-store-v4 .ch-sort-option:hover {
+  color: var(--ch-ink);
+  background: var(--ch-surface-muted);
+}
+
+.ch-store-v4 .ch-sort-option:active {
+  transform: scale(0.985);
+}
+
+.ch-store-v4 .ch-sort-option.is-selected {
+  color: var(--ch-accent, #7d2f50);
+  background: color-mix(
+    in srgb,
+    var(--ch-warm-rose) 38%,
+    var(--ch-surface)
+  );
+}
+
+.ch-store-v4 .ch-sort-option.is-selected > span:last-child {
+  font-weight: 750;
+}
+
+.ch-store-v4 .ch-sort-check {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  color: var(--ch-accent, #7d2f50);
+}
+
+.ch-store-v4 .ch-sort-option:focus-visible {
+  outline: 2px solid var(--ch-focus);
+  outline-offset: -2px;
+}
+
+/* Modo oscuro */
+
+html[data-theme="dark"] .ch-store-v4 .ch-sort-trigger,
+html[data-theme="dark"] .ch-store-v4 .ch-sort-options {
+  color: var(--ch-ink);
+  border-color: var(--ch-line);
+  background: var(--ch-surface-raised);
+}
+
+html[data-theme="dark"] .ch-store-v4 .ch-sort-option.is-selected {
+  color: var(--ch-ink);
+  background: color-mix(
+    in srgb,
+    var(--ch-accent, #7d2f50) 24%,
+    var(--ch-surface)
+  );
+}
+
+/* Responsive */
+
+@media (max-width: 620px) {
+  .ch-store-v4 .ch-sort-menu {
+    z-index: 80;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ch-store-v4 .ch-sort-trigger {
+    width: 100%;
+    min-height: 54px;
+    grid-template-columns: 20px minmax(0, 1fr) 20px;
+    padding: 0 14px;
+    border-radius: 14px;
+  }
+
+  .ch-store-v4 .ch-sort-options {
+    right: 0;
+    left: 0;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    gap: 3px;
+    padding: 6px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    transform-origin: top center;
+  }
+
+  .ch-store-v4 .ch-sort-option {
+    min-height: 46px;
+    padding: 10px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .ch-store-v4 .ch-sort-trigger {
+    min-height: 52px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .ch-store-v4 .ch-sort-option {
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+}
+
 .ch-store-v4 .ch-catalogue {
   padding-top: clamp(92px, 9vw, 130px);
   border-top: 1px solid var(--ch-line);
@@ -1937,6 +2191,595 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     height: clamp(210px, 40dvh, 240px);
     min-height: 0;
     aspect-ratio: auto;
+  }
+}
+
+/* ==========================================================================
+   Modal de producto — experiencia móvil
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* Fondo del modal: crea espacio real alrededor de la tarjeta */
+  .ch-store-v4 .ch-overlay:has(.ch-product-modal) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding:
+      max(18px, env(safe-area-inset-top))
+      14px
+      max(18px, env(safe-area-inset-bottom)) !important;
+
+    overflow: hidden !important;
+  }
+
+  /* Tarjeta principal */
+  .ch-store-v4 .ch-product-modal {
+    position: relative !important;
+
+    display: grid !important;
+    width: min(100%, 430px) !important;
+    max-width: 430px !important;
+
+    height: auto !important;
+    max-height: calc(
+      100dvh -
+      max(36px, env(safe-area-inset-top)) -
+      max(36px, env(safe-area-inset-bottom))
+    ) !important;
+
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    border: 1px solid var(--ch-line) !important;
+    border-radius: 24px !important;
+
+    background: var(--ch-surface) !important;
+
+    box-shadow:
+      0 24px 70px rgba(13, 10, 12, 0.3) !important;
+  }
+
+  /* Imagen superior: ya no ocupará media pantalla */
+  .ch-store-v4 .ch-product-modal .ch-modal-gallery {
+    position: relative !important;
+
+    width: 100% !important;
+
+    height: clamp(190px, 29dvh, 245px) !important;
+    min-height: 190px !important;
+    max-height: 245px !important;
+
+    aspect-ratio: auto !important;
+
+    overflow: hidden !important;
+
+    border-radius: 0 !important;
+    border-bottom: 1px solid var(--ch-line) !important;
+
+    background: var(--ch-photo-matte) !important;
+  }
+
+  /* Imagen del producto */
+  .ch-store-v4 .ch-product-modal .ch-modal-gallery img,
+  .ch-store-v4 .ch-product-modal .ch-modal-gallery .ch-product-image {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: contain !important;
+
+    padding: 8px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  /* Botón cerrar */
+  .ch-store-v4 .ch-product-modal .ch-modal-close {
+    position: absolute !important;
+    z-index: 20 !important;
+
+    top: 12px !important;
+    right: 12px !important;
+
+    width: 40px !important;
+    height: 40px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 999px !important;
+
+    background: color-mix(
+      in srgb,
+      var(--ch-surface-raised) 94%,
+      transparent
+    ) !important;
+
+    box-shadow: 0 6px 20px rgba(20, 14, 12, 0.14) !important;
+
+    backdrop-filter: blur(8px);
+  }
+
+  /* Contenido: solamente esta zona hace scroll */
+  .ch-store-v4 .ch-product-modal .ch-modal-content {
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    padding: 20px 18px 22px !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    overscroll-behavior: contain;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+  }
+
+  /* Categoría */
+  .ch-store-v4 .ch-product-modal .ch-product-category {
+    margin-bottom: 5px !important;
+
+    font-size: 0.68rem !important;
+  }
+
+  /* Nombre */
+  .ch-store-v4 .ch-product-modal .ch-modal-content h2 {
+    margin: 0 !important;
+
+    font-size: clamp(1.75rem, 7vw, 2.15rem) !important;
+    line-height: 1.05 !important;
+
+    overflow-wrap: normal !important;
+  }
+
+  /* Precio */
+  .ch-store-v4 .ch-product-modal .ch-modal-price {
+    margin-top: 10px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-modal-price strong {
+    font-size: 1.25rem !important;
+  }
+
+  /* Descripción */
+  .ch-store-v4 .ch-product-modal .ch-modal-description {
+    margin-top: 13px !important;
+
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Datos como materiales/personalización */
+  .ch-store-v4 .ch-product-modal .ch-product-facts {
+    gap: 8px !important;
+
+    margin-top: 15px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-product-facts span {
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Opciones */
+  .ch-store-v4 .ch-product-modal .ch-options {
+    margin-top: 18px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-option-row {
+    gap: 8px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-option-row button {
+    min-height: 40px !important;
+
+    padding: 8px 11px !important;
+
+    font-size: 0.78rem !important;
+  }
+
+  /* Cantidad + agregar */
+  .ch-store-v4 .ch-product-modal .ch-add-row {
+    display: grid !important;
+
+    grid-template-columns: auto minmax(0, 1fr) !important;
+
+    align-items: stretch !important;
+
+    gap: 10px !important;
+
+    margin-top: 20px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-quantity-control {
+    min-height: 46px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-add-button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+
+    white-space: normal !important;
+  }
+
+  /* Texto inferior */
+  .ch-store-v4 .ch-product-modal .ch-dialog-note {
+    margin: 13px 0 0 !important;
+
+    font-size: 0.73rem !important;
+    line-height: 1.45 !important;
+
+    text-align: center;
+  }
+}
+
+/* Teléfonos especialmente estrechos */
+@media (max-width: 400px) {
+  .ch-store-v4 .ch-overlay:has(.ch-product-modal) {
+    padding:
+      max(12px, env(safe-area-inset-top))
+      10px
+      max(12px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .ch-store-v4 .ch-product-modal {
+    width: 100% !important;
+
+    max-height: calc(100dvh - 24px) !important;
+
+    border-radius: 21px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-modal-gallery {
+    height: clamp(175px, 27dvh, 220px) !important;
+    min-height: 175px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-modal-content {
+    padding: 18px 15px 20px !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-add-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-quantity-control {
+    width: 100% !important;
+  }
+
+  .ch-store-v4 .ch-product-modal .ch-add-button {
+    width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   Carrito / solicitud — experiencia móvil
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* Overlay del carrito */
+  .ch-store-v4 .ch-overlay:has(.ch-inquiry-drawer) {
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: flex-end !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Panel principal */
+  .ch-store-v4 .ch-inquiry-drawer {
+    position: relative !important;
+
+    display: flex !important;
+    width: min(94vw, 430px) !important;
+    max-width: 430px !important;
+    min-width: 0 !important;
+
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+
+    flex-direction: column !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    border-left: 1px solid var(--ch-line) !important;
+    border-radius: 22px 0 0 22px !important;
+
+    background: var(--ch-surface) !important;
+
+    box-shadow: -18px 0 55px rgba(13, 10, 12, 0.2) !important;
+  }
+
+  /* Cabecera */
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header {
+    position: relative !important;
+    z-index: 5 !important;
+
+    flex: 0 0 auto !important;
+
+    min-width: 0 !important;
+
+    padding:
+      max(18px, env(safe-area-inset-top))
+      18px
+      16px !important;
+
+    border-bottom: 1px solid var(--ch-line) !important;
+
+    background: var(--ch-surface) !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header > div {
+    min-width: 0 !important;
+    padding-right: 48px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header h2 {
+    margin: 4px 0 0 !important;
+
+    font-size: clamp(1.65rem, 7vw, 2rem) !important;
+    line-height: 1.08 !important;
+
+    overflow-wrap: normal !important;
+  }
+
+  /* Botón cerrar */
+  .ch-store-v4 .ch-inquiry-drawer .ch-modal-close {
+    position: absolute !important;
+
+    top: max(16px, env(safe-area-inset-top)) !important;
+    right: 16px !important;
+
+    width: 40px !important;
+    height: 40px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 999px !important;
+  }
+
+  /* Formulario completo */
+  .ch-store-v4 .ch-inquiry-drawer .ch-inquiry-form {
+    display: flex !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+
+    padding: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    overscroll-behavior: contain;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Productos */
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-items {
+    display: grid !important;
+
+    min-width: 0 !important;
+
+    gap: 12px !important;
+
+    padding: 16px 16px 6px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item {
+    min-width: 0 !important;
+
+    padding: 12px !important;
+
+    border-radius: 14px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-item h3 {
+    min-width: 0 !important;
+
+    font-size: 0.9rem !important;
+    line-height: 1.25 !important;
+
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Total */
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
+    margin: 12px 16px 0 !important;
+    padding: 14px 0 !important;
+
+    border-top: 1px solid var(--ch-line) !important;
+    border-bottom: 1px solid var(--ch-line) !important;
+  }
+
+  /* Campos del cliente */
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields {
+    display: grid !important;
+
+    min-width: 0 !important;
+
+    gap: 14px !important;
+
+    padding: 18px 16px 0 !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields label {
+    min-width: 0 !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields input,
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields textarea {
+    display: block !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields textarea {
+    min-height: 92px !important;
+    max-height: 150px !important;
+
+    resize: vertical;
+  }
+
+  /* Consentimiento */
+  .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
+    width: auto !important;
+    max-width: none !important;
+
+    margin: 16px 16px 0 !important;
+
+    grid-template-columns: 20px minmax(0, 1fr) !important;
+
+    gap: 10px !important;
+
+    padding: 12px 13px !important;
+
+    border-radius: 12px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent > span {
+    min-width: 0 !important;
+
+    font-size: 0.78rem !important;
+    line-height: 1.48 !important;
+
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  /* Error */
+  .ch-store-v4 .ch-inquiry-drawer .ch-modal-error {
+    margin: 14px 16px 0 !important;
+  }
+
+  /* Botón WhatsApp */
+  .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button {
+    display: flex !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 50px !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 9px !important;
+
+    margin: 18px 16px 0 !important;
+    padding: 13px 16px !important;
+
+    border-radius: 13px !important;
+
+    box-sizing: border-box !important;
+
+    white-space: normal !important;
+
+    text-align: center !important;
+  }
+
+  /* Texto debajo de WhatsApp */
+  .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-caption {
+    width: auto !important;
+    min-width: 0 !important;
+
+    margin: 10px 16px 0 !important;
+
+    padding: 0 4px !important;
+
+    font-size: 0.72rem !important;
+    line-height: 1.5 !important;
+
+    text-align: center !important;
+
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  /* Espacio final para que nada choque con la barra del teléfono */
+  .ch-store-v4 .ch-inquiry-drawer .ch-inquiry-form::after {
+    display: block;
+
+    height: max(24px, env(safe-area-inset-bottom));
+
+    flex: 0 0 max(24px, env(safe-area-inset-bottom));
+
+    content: "";
+  }
+}
+
+/* Celulares estrechos */
+@media (max-width: 400px) {
+  .ch-store-v4 .ch-inquiry-drawer {
+    width: calc(100vw - 10px) !important;
+
+    border-radius: 20px 0 0 20px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-drawer-header {
+    padding-right: 14px !important;
+    padding-left: 14px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-items {
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields {
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
+
+    padding: 11px 12px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-button {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
+  }
+
+  .ch-store-v4 .ch-inquiry-drawer .ch-whatsapp-caption {
+    margin-right: 12px !important;
+    margin-left: 12px !important;
   }
 }
 
