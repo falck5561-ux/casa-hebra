@@ -67,6 +67,15 @@ class SupabaseStore {
     return this;
   }
 
+  async refresh() {
+    await this.writeQueue;
+    const rows = await this.request(this.endpoint("?id=eq.main&select=data&limit=1"), { method: "GET" });
+    if (Array.isArray(rows) && rows[0] && rows[0].data) {
+      this.data = normalizeLoadedData(rows[0].data);
+    }
+    return this;
+  }
+
   read() {
     if (!this.data) throw new Error("SupabaseStore.init() must finish before reading data.");
     return clone(this.data);
