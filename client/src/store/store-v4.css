@@ -2793,7 +2793,7 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
 
     content: "";
   }
-}
+
 
 /* Separación definitiva: consentimiento + WhatsApp */
 .ch-store-v4 .ch-inquiry-drawer label.ch-privacy-consent {
@@ -2818,11 +2818,13 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
   margin: 10px 16px 0 !important;
 }
 
+/* Cierra @media (max-width: 760px) */
+}
+
 /* Celulares estrechos */
 @media (max-width: 400px) {
   .ch-store-v4 .ch-inquiry-drawer {
     width: calc(100vw - 10px) !important;
-
     border-radius: 20px 0 0 20px !important;
   }
 
