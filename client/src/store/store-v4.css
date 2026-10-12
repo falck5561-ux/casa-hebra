@@ -2604,14 +2604,72 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
     overflow-wrap: anywhere !important;
   }
 
-  /* Total */
-  .ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
-    margin: 12px 16px 0 !important;
-    padding: 14px 0 !important;
+  /* Resumen del pedido */
+.ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
+  position: relative !important;
 
-    border-top: 1px solid var(--ch-line) !important;
-    border-bottom: 1px solid var(--ch-line) !important;
-  }
+  display: grid !important;
+  width: auto !important;
+  min-width: 0 !important;
+
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 8px 16px !important;
+
+  margin: 18px 16px 0 !important;
+  padding: 16px !important;
+
+  border: 1px solid var(--ch-line) !important;
+  border-radius: 14px !important;
+
+  background: var(--ch-surface-raised) !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Cantidad de piezas */
+.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > span:first-child {
+  min-width: 0 !important;
+
+  color: var(--ch-ink-muted) !important;
+
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+/* Precio total */
+.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > strong {
+  justify-self: end !important;
+
+  color: var(--ch-ink) !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+}
+
+/* Explicación del total */
+.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > p {
+  grid-column: 1 / -1 !important;
+
+  max-width: 100% !important;
+
+  margin: 3px 0 0 !important;
+  padding-top: 11px !important;
+
+  border-top: 1px solid var(--ch-line) !important;
+
+  color: var(--ch-ink-muted) !important;
+
+  font-size: 0.76rem !important;
+  line-height: 1.5 !important;
+
+  overflow-wrap: normal !important;
+}
 
   /* Campos del cliente */
   .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields {
@@ -2779,9 +2837,15 @@ html[data-theme="dark"] .ch-store-v4 .ch-footer {
   }
 
   .ch-store-v4 .ch-inquiry-drawer .ch-bag-total {
-    margin-right: 12px !important;
-    margin-left: 12px !important;
-  }
+  margin-right: 12px !important;
+  margin-left: 12px !important;
+  padding: 14px !important;
+  border-radius: 13px !important;
+}
+
+.ch-store-v4 .ch-inquiry-drawer .ch-bag-total > strong {
+  font-size: 1.35rem !important;
+}
 
   .ch-store-v4 .ch-inquiry-drawer .ch-customer-fields {
     padding-right: 12px !important;
